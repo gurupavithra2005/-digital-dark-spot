@@ -26,10 +26,15 @@ export function SourceLibraryView({ projects, onOpenProject }: SourceLibraryView
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
   // Flatten all sources from all projects
-  const allSources: Array<{ source: Source; projectTitle: string; projectId: string }> = [];
+  const allSources: Array<{ source: Source; projectTitle: string; projectId: string; isDemo?: boolean }> = [];
   projects.forEach((p) => {
     (p.sources || []).forEach((s) => {
-      allSources.push({ source: s, projectTitle: p.title, projectId: p.id });
+      allSources.push({ 
+        source: s, 
+        projectTitle: p.title, 
+        projectId: p.id,
+        isDemo: p.isSampleDemo || p.isDemo 
+      });
     });
   });
 
@@ -104,6 +109,11 @@ export function SourceLibraryView({ projects, onOpenProject }: SourceLibraryView
                     <span className="rounded bg-slate-800 px-2 py-0.5 text-[10px] text-slate-300">
                       {source.category.replace('_', ' ')}
                     </span>
+                    {source.isDemo || allSources.find(a => a.source.id === source.id)?.isDemo ? (
+                      <span className="rounded bg-amber-950/80 border border-amber-500/30 px-2 py-0.5 text-[10px] font-semibold text-amber-300">
+                        Demo Source
+                      </span>
+                    ) : null}
                     <button
                       onClick={() => onOpenProject(projectId)}
                       className="text-[11px] text-blue-400 hover:underline"

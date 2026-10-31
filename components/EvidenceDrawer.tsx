@@ -99,7 +99,7 @@ export function EvidenceDrawer({ isOpen, onClose, data, onVerifyClaim }: Evidenc
             <div className="flex items-center justify-between">
               <span className="flex items-center gap-1.5 text-xs font-semibold text-blue-300 uppercase tracking-wide">
                 <Quote className="h-3.5 w-3.5" />
-                Exact Verbatim Supporting Passage
+                Source-Linked Verbatim Passage
               </span>
               <button
                 onClick={handleCopyQuote}

@@ -104,11 +104,11 @@ export function ProjectsListView({
             <div className="space-y-3">
               <div className="flex items-center justify-between">
                 <span className={`rounded px-2 py-0.5 text-[10px] font-semibold uppercase ${
-                  proj.isSampleDemo
+                  (proj.isSampleDemo || proj.isDemo)
                     ? 'bg-amber-950 border border-amber-500/40 text-amber-300'
                     : 'bg-blue-950 border border-blue-500/40 text-blue-300'
                 }`}>
-                  {proj.isSampleDemo ? 'Illustrative Demo' : 'User Research'}
+                  {(proj.isSampleDemo || proj.isDemo) ? 'Illustrative Demo' : 'Real User Research'}
                 </span>
 
                 <div className="flex items-center gap-2 text-xs text-slate-400">
@@ -116,6 +116,12 @@ export function ProjectsListView({
                   <span>{new Date(proj.updatedAt).toLocaleDateString()}</span>
                 </div>
               </div>
+
+              {(proj.isSampleDemo || proj.isDemo) && (
+                <div className="text-[10px] font-bold text-amber-400 uppercase tracking-wider">
+                  ILLUSTRATIVE DEMO DATA — NOT LIVE OFFICIAL INFORMATION
+                </div>
+              )}
 
               <div>
                 <h2 className="text-base font-bold text-white leading-snug line-clamp-2">

@@ -25,6 +25,7 @@ export interface Source {
   extractionConfidence: number; // 0 to 100%
   pageCount?: number;
   isExcluded?: boolean;
+  isDemo?: boolean;
   notes?: string;
 }
 
@@ -225,6 +226,8 @@ export interface ResearchProject {
   createdAt: string;
   updatedAt: string;
   isSampleDemo?: boolean;
+  isDemo?: boolean;
+  demoDisclaimer?: string;
   executiveSummary?: string;
   sources: Source[];
   claims: ExtractedClaim[];

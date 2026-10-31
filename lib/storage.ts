@@ -106,11 +106,19 @@ export function resetToDemo(): ResearchProject {
     addActivity({
       type: 'project_created',
       title: 'Demo Loaded',
-      description: 'Loaded Section 26 Scholarship Demonstration Scenario',
+      description: 'Loaded Illustrative Scholarship Verification Scenario',
       projectId: SAMPLE_SCHOLARSHIP_PROJECT.id,
     });
   }
   return SAMPLE_SCHOLARSHIP_PROJECT;
+}
+
+export function clearAllLocalData(): void {
+  if (typeof window !== 'undefined') {
+    localStorage.removeItem(STORAGE_KEY);
+    localStorage.removeItem(ACTIVE_PROJECT_KEY);
+    localStorage.removeItem(ACTIVITIES_KEY);
+  }
 }
 
 /**

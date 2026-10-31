@@ -149,6 +149,12 @@ export function ReportModal({ isOpen, onClose, project }: ReportModalProps) {
                 </div>
               )}
             </div>
+
+            {(project.isSampleDemo || project.isDemo) && (
+              <div className="mt-3 p-3 rounded-lg border border-amber-500/40 bg-amber-950/30 text-amber-300 font-bold text-xs uppercase print:bg-yellow-100 print:text-yellow-900 print:border-yellow-400">
+                ILLUSTRATIVE DEMO DATA — NOT LIVE OFFICIAL INFORMATION.
+              </div>
+            )}
           </div>
 
           {/* Section 3: Executive Summary */}
@@ -188,7 +194,7 @@ export function ReportModal({ isOpen, onClose, project }: ReportModalProps) {
           {/* Section 5: Key Extracted Information */}
           <div className="space-y-3">
             <h2 className="text-sm font-bold uppercase tracking-wider text-blue-400 print:text-blue-700">
-              3. Key Sourced Claims & Verbatim Evidence ({project.claims?.length || 0})
+              3. Key Sourced Claims & Supporting Evidence ({project.claims?.length || 0})
             </h2>
             <div className="space-y-2 text-xs">
               {(project.claims || []).map((c, idx) => (

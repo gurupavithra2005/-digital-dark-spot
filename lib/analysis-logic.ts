@@ -143,7 +143,7 @@ export function classifySourceCategory(urlOrDomain: string, orgName: string = ''
  */
 export function detectDateFreshnessWarning(
   sourceDateStr: string | undefined,
-  currentYear: number = 2026,
+  currentYear: number = new Date().getFullYear(),
   operationalContext: string = ''
 ): { status: FreshnessStatus; warningReason: string; severity: 'high' | 'medium' | 'low' } | null {
   if (!sourceDateStr || sourceDateStr.trim() === '') {

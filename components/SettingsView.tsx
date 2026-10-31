@@ -127,8 +127,8 @@ export function SettingsView({ onResetDemo, onImportProjects }: SettingsViewProp
             <span className="text-emerald-400 font-medium">Server-Side Proxy Only (process.env.GEMINI_API_KEY)</span>
           </div>
           <div className="flex items-center justify-between">
-            <span className="font-semibold text-slate-300">Extraction Anti-Hallucination</span>
-            <span className="text-emerald-400 font-medium">Strict Verbatim Passage Quotes Required</span>
+            <span className="font-semibold text-slate-300">Extraction Grounding</span>
+            <span className="text-emerald-400 font-medium">Source-linked evidence passages with traceable provenance</span>
           </div>
           <div className="flex items-center justify-between">
             <span className="font-semibold text-slate-300">SSRF Web Scraping Protection</span>
@@ -137,10 +137,67 @@ export function SettingsView({ onResetDemo, onImportProjects }: SettingsViewProp
         </div>
       </div>
 
-      {/* Data Management & Backup */}
+      {/* Privacy & Data Handling (Audit Section 11 Requirement) */}
       <div className="rounded-2xl border border-slate-800 bg-[#0e1422] p-6 space-y-4 shadow-sm">
         <div className="flex items-center gap-2.5">
           <ShieldCheck className="h-5 w-5 text-emerald-400" />
+          <div>
+            <h2 className="text-base font-bold text-white">Privacy & Data Handling Transparency</h2>
+            <p className="text-xs text-slate-400">How your research documents, URLs, and queries are processed</p>
+          </div>
+        </div>
+
+        <div className="rounded-xl border border-slate-800 bg-[#090d16] p-4 text-xs space-y-3 text-slate-300">
+          <div>
+            <strong className="text-white block mb-0.5">1. URL & Document Processing:</strong>
+            When you enter a URL or paste text, content is fetched through a secure server-side proxy equipped with Server-Side Request Forgery (SSRF) controls that strictly block private network ranges (such as localhost, 127.0.0.1, 10.0.0.0/8, 192.168.0.0/16, and cloud metadata IPs).
+          </div>
+          <div>
+            <strong className="text-white block mb-0.5">2. AI Inference via Gemini 3.8 Flash:</strong>
+            Source excerpts and research objectives are sent securely to Google Gemini AI strictly via server-side API routes. Your API credentials and system keys are never exposed in browser bundles or client network requests.
+          </div>
+          <div>
+            <strong className="text-white block mb-0.5">3. Local Storage vs. AI Service:</strong>
+            All research files, extracted claims, custom checklist tasks, and notes reside solely in your browser&apos;s private local storage. No third-party analytics, tracking cookies, or external behavioral trackers are loaded.
+          </div>
+          <div>
+            <strong className="text-white block mb-0.5">4. Complete User Data Deletion Control:</strong>
+            You maintain 100% ownership of your research. You can export complete JSON backups, export CSV spreadsheets, or erase all local research records permanently at any time.
+          </div>
+        </div>
+
+        <div className="pt-2 flex items-center justify-between">
+          <div className="text-[11px] text-slate-400">
+            Erase all stored research, custom sources, and checklist progress
+          </div>
+
+          <button
+            onClick={() => {
+              const confirmed = window.confirm(
+                'Are you sure you want to permanently delete all local research projects and data? This action cannot be undone.'
+              );
+              if (confirmed) {
+                if (typeof window !== 'undefined') {
+                  localStorage.removeItem('digital_dark_spot_projects_v2');
+                  localStorage.removeItem('digital_dark_spot_active_project_id_v2');
+                  localStorage.removeItem('digital_dark_spot_activities_v1');
+                }
+                onResetDemo();
+                setStatusMessage('All local research data was wiped clean. Reset to baseline.');
+                setTimeout(() => setStatusMessage(null), 3000);
+              }
+            }}
+            className="rounded-xl border border-rose-500/30 bg-rose-950/20 hover:bg-rose-950/40 px-3.5 py-2 text-xs font-semibold text-rose-300 transition-colors"
+          >
+            Delete All Local Research Data
+          </button>
+        </div>
+      </div>
+
+      {/* Data Management & Backup */}
+      <div className="rounded-2xl border border-slate-800 bg-[#0e1422] p-6 space-y-4 shadow-sm">
+        <div className="flex items-center gap-2.5">
+          <Database className="h-5 w-5 text-indigo-400" />
           <div>
             <h2 className="text-base font-bold text-white">Data Management & Demonstrations</h2>
             <p className="text-xs text-slate-400">Export complete workspace state or restore presets</p>

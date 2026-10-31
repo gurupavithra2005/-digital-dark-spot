@@ -8,6 +8,7 @@ import { ProjectWorkspace } from '@/components/ProjectWorkspace';
 import { ProjectsListView } from '@/components/ProjectsListView';
 import { SourceLibraryView } from '@/components/SourceLibraryView';
 import { SettingsView } from '@/components/SettingsView';
+import { LandingView } from '@/components/LandingView';
 import { 
   getAllProjects, 
   saveProject, 
@@ -23,7 +24,7 @@ export default function Home() {
     return getAllProjects();
   });
   const [activeView, setActiveView] = useState<
-    'dashboard' | 'new-research' | 'my-research' | 'sources' | 'settings' | 'workspace'
+    'landing' | 'dashboard' | 'new-research' | 'my-research' | 'sources' | 'settings' | 'workspace'
   >('dashboard');
   const [activeProjectId, setActiveId] = useState<string>(() => {
     const stored = getActiveProjectId();
@@ -34,7 +35,7 @@ export default function Home() {
   const activeProject = projects.find((p) => p.id === activeProjectId) || projects[0] || null;
 
   // Navigation handler
-  const handleNavigate = (view: 'dashboard' | 'new-research' | 'my-research' | 'sources' | 'settings' | 'workspace') => {
+  const handleNavigate = (view: 'landing' | 'dashboard' | 'new-research' | 'my-research' | 'sources' | 'settings' | 'workspace') => {
     setActiveView(view);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -112,6 +113,14 @@ export default function Home() {
       hasActiveProject={!!activeProject}
       activeProjectTitle={activeProject?.title}
     >
+      {activeView === 'landing' && (
+        <LandingView
+          onStartResearch={() => handleNavigate('new-research')}
+          onExploreDemo={handleLoadDemo}
+          onOpenDashboard={() => handleNavigate('dashboard')}
+        />
+      )}
+
       {activeView === 'dashboard' && (
         <DashboardView
           projects={projects}
@@ -119,6 +128,7 @@ export default function Home() {
           onNewResearch={() => handleNavigate('new-research')}
           onViewAllProjects={() => handleNavigate('my-research')}
           onLoadDemo={handleLoadDemo}
+          onNavigateToLanding={() => handleNavigate('landing')}
         />
       )}
 

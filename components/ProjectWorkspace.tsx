@@ -362,8 +362,8 @@ export function ProjectWorkspace({
               <span className="rounded-md bg-blue-950 border border-blue-500/40 px-2 py-0.5 text-[10px] font-semibold text-blue-300 uppercase">
                 Active Research Project
               </span>
-              {project.isSampleDemo && (
-                <span className="rounded-md bg-amber-950 border border-amber-500/40 px-2 py-0.5 text-[10px] font-semibold text-amber-300">
+              {(project.isSampleDemo || project.isDemo) && (
+                <span className="rounded-md bg-amber-950 border border-amber-500/40 px-2 py-0.5 text-[10px] font-bold text-amber-300">
                   ILLUSTRATIVE DEMO DATA — NOT LIVE OFFICIAL INFORMATION
                 </span>
               )}

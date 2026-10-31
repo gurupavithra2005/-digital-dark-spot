@@ -2,7 +2,7 @@ import { ResearchProject, AnalysisVersion } from '@/types/research';
 
 export const SAMPLE_SCHOLARSHIP_PROJECT: ResearchProject = {
   id: 'demo-scholarship-2026',
-  title: 'National Merit Scholarship: Eligibility & Verification Review',
+  title: 'Illustrative Scholarship Verification Scenario',
   researchQuestion: 'What should I verify before applying for this scholarship?',
   objective: 'Identify eligibility requirements, renewal conditions, required documents, current deadlines, and the official application process.',
   geographicScope: 'National / State Level',
@@ -21,6 +21,8 @@ export const SAMPLE_SCHOLARSHIP_PROJECT: ResearchProject = {
   createdAt: '2026-10-31T09:30:00.000Z',
   updatedAt: '2026-10-31T10:15:00.000Z',
   isSampleDemo: true,
+  isDemo: true,
+  demoDisclaimer: 'ILLUSTRATIVE DEMO DATA — NOT LIVE OFFICIAL INFORMATION',
   executiveSummary: 'Reviewed 3 disparate sources (1 official portal notice, 1 secondary educational advisory guide, and 1 university financial aid handbook). While primary eligibility thresholds and funding amounts are well-documented, the analysis identified a critical conflict regarding income limits and document submission formats, a high-severity freshness warning on an expired 2023–2024 cycle date, and a complete absence of renewal terms across all reviewed texts. Actionable verification checklist prioritized below.',
   coverageSummaryScore: 65,
   sources: [

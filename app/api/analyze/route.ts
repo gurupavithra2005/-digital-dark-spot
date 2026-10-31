@@ -225,6 +225,8 @@ Return a valid, parseable JSON object matching this schema EXACTLY without markd
           status: 'completed',
           createdAt: new Date().toISOString(),
           updatedAt: new Date().toISOString(),
+          isSampleDemo: false,
+          isDemo: false,
           executiveSummary: parsed.executiveSummary || 'Research analysis complete.',
           sources: activeSources,
           claims: (parsed.claims || []).map((c: any, i: number) => ({
@@ -367,6 +369,8 @@ Return a valid, parseable JSON object matching this schema EXACTLY without markd
       status: 'completed',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
+      isSampleDemo: false,
+      isDemo: false,
       executiveSummary: `Analysis completed across ${activeSources.length} sources. ${gaps.length} potential information gaps and ${freshnessWarnings.length} freshness alerts were identified.`,
       sources: activeSources,
       claims,

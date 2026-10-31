@@ -19,8 +19,8 @@ import {
 
 interface AppShellProps {
   children: React.ReactNode;
-  activeView: 'dashboard' | 'new-research' | 'my-research' | 'sources' | 'settings' | 'workspace';
-  onNavigate: (view: 'dashboard' | 'new-research' | 'my-research' | 'sources' | 'settings' | 'workspace') => void;
+  activeView: 'dashboard' | 'new-research' | 'my-research' | 'sources' | 'settings' | 'workspace' | 'landing';
+  onNavigate: (view: 'dashboard' | 'new-research' | 'my-research' | 'sources' | 'settings' | 'workspace' | 'landing') => void;
   onLoadDemo: () => void;
   hasActiveProject: boolean;
   activeProjectTitle?: string;
@@ -39,6 +39,7 @@ export function AppShell({
 
   const navItems = [
     { id: 'dashboard', label: 'Overview', icon: Compass },
+    { id: 'landing', label: 'Platform Tour', icon: Sparkles },
     { id: 'new-research', label: 'New Research', icon: PlusCircle },
     { id: 'my-research', label: 'My Research', icon: FolderGit2 },
     { id: 'sources', label: 'Source Library', icon: Library },
@@ -47,6 +48,8 @@ export function AppShell({
 
   const getPageTitle = () => {
     switch (activeView) {
+      case 'landing':
+        return 'Discover What Information Is Missing';
       case 'dashboard':
         return 'Research Intelligence Workspace';
       case 'new-research':
