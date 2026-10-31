@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import { ResearchProject } from '@/types/research';
 import { exportChecklistToCSV, exportFindingsToCSV } from '@/lib/storage';
+import { formatDisplayDate } from '@/lib/utils';
 
 interface ReportModalProps {
   isOpen: boolean;
@@ -128,7 +129,7 @@ export function ReportModal({ isOpen, onClose, project }: ReportModalProps) {
               <span className="font-semibold uppercase tracking-wider text-blue-400 print:text-blue-700">
                 DIGITAL DARK SPOT — Evidence & Information Gap Report
               </span>
-              <span>Generated: {new Date().toLocaleDateString()}</span>
+              <span>Generated: {formatDisplayDate(new Date())}</span>
             </div>
             <h1 className="text-2xl sm:text-3xl font-bold text-white print:text-black">
               {project.title}
@@ -179,7 +180,7 @@ export function ReportModal({ isOpen, onClose, project }: ReportModalProps) {
                     [{idx + 1}] {s.title}
                   </div>
                   <div className="text-[11px] text-slate-400 print:text-gray-600 mt-0.5">
-                    Category: {s.category.replace('_', ' ')} | Date: {s.publicationDate || 'Undated'} | Organization: {s.organization || s.domain || 'N/A'}
+                    Category: {s.category.replace('_', ' ')} | Date: {formatDisplayDate(s.publicationDate)} | Organization: {s.organization || s.domain || 'N/A'}
                   </div>
                   {s.url && (
                     <div className="text-[11px] text-blue-400 print:text-blue-600 truncate mt-1">

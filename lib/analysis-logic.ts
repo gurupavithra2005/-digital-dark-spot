@@ -316,3 +316,57 @@ export function generateVersionChangesSummary(
 
   return changes.length > 0 ? changes : ['Re-analyzed sources; evidence coverage remains consistent.'];
 }
+
+/**
+ * Accurately calculates total, open, and resolved/confirmed findings for a project.
+ * Total findings = gaps + conflicts + freshnessWarnings.
+ * Open findings = items requiring verification or review (reviewStatus === 'needs_review' or not reviewed).
+ * Resolved/Other = confirmed, resolved, or dismissed by user.
+ */
+export function calculateFindingsBreakdown(project: {
+  gaps?: Array<{ reviewStatus?: string; status?: string }>;
+  conflicts?: Array<{ reviewStatus?: string; resolutionStatus?: string }>;
+  freshnessWarnings?: Array<{ reviewStatus?: string; status?: string }>;
+}) {
+  const gaps = project.gaps || [];
+  const conflicts = project.conflicts || [];
+  const warnings = project.freshnessWarnings || [];
+
+  const total = gaps.length + conflicts.length + warnings.length;
+
+  const isOpenGap = (g: { reviewStatus?: string; status?: string }) => {
+    if (g.reviewStatus === 'confirmed' || g.reviewStatus === 'resolved' || g.reviewStatus === 'dismissed') {
+      return false;
+    }
+    return true;
+  };
+
+  const isOpenConflict = (c: { reviewStatus?: string; resolutionStatus?: string }) => {
+    if (c.reviewStatus === 'confirmed' || c.reviewStatus === 'resolved' || c.reviewStatus === 'dismissed' || c.resolutionStatus === 'resolved') {
+      return false;
+    }
+    return true;
+  };
+
+  const isOpenWarning = (w: { reviewStatus?: string; status?: string }) => {
+    if (w.reviewStatus === 'confirmed' || w.reviewStatus === 'resolved' || w.reviewStatus === 'dismissed') {
+      return false;
+    }
+    return true;
+  };
+
+  const openGapsCount = gaps.filter(isOpenGap).length;
+  const openConflictsCount = conflicts.filter(isOpenConflict).length;
+  const openWarningsCount = warnings.filter(isOpenWarning).length;
+
+  const openCount = openGapsCount + openConflictsCount + openWarningsCount;
+  const resolvedCount = total - openCount;
+
+  return {
+    total,
+    openCount,
+    resolvedCount,
+    breakdownText: `${total} Total Demo Findings — ${openCount} Open, ${resolvedCount} Resolved/Other`
+  };
+}
+

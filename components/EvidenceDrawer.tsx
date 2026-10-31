@@ -16,6 +16,7 @@ import {
   Check
 } from 'lucide-react';
 import { ExtractedClaim, Source } from '@/types/research';
+import { formatDisplayDate } from '@/lib/utils';
 
 export interface EvidenceDrawerData {
   title: string;
@@ -32,6 +33,8 @@ export interface EvidenceDrawerData {
   sectionName?: string;
   confidence?: number;
   findingType?: 'fact' | 'gap' | 'conflict' | 'freshness';
+  reasonForFinding?: string;
+  verificationRecommendation?: string;
 }
 
 interface EvidenceDrawerProps {
@@ -135,6 +138,29 @@ export function EvidenceDrawer({ isOpen, onClose, data, onVerifyClaim }: Evidenc
             </div>
           </div>
 
+          {/* Reason for Finding & Verification Recommendation */}
+          {(data.reasonForFinding || data.verificationRecommendation) && (
+            <div className="grid grid-cols-1 gap-3">
+              {data.reasonForFinding && (
+                <div className="rounded-xl border border-amber-500/30 bg-amber-950/15 p-4 space-y-1 text-xs">
+                  <div className="font-bold text-amber-300 uppercase tracking-wider text-[10px]">
+                    Reason for Finding
+                  </div>
+                  <p className="text-slate-200 leading-relaxed">{data.reasonForFinding}</p>
+                </div>
+              )}
+
+              {data.verificationRecommendation && (
+                <div className="rounded-xl border border-emerald-500/30 bg-emerald-950/15 p-4 space-y-1 text-xs">
+                  <div className="font-bold text-emerald-300 uppercase tracking-wider text-[10px]">
+                    Verification Recommendation
+                  </div>
+                  <p className="text-slate-200 leading-relaxed">{data.verificationRecommendation}</p>
+                </div>
+              )}
+            </div>
+          )}
+
           {/* Source Metadata Provenance */}
           <div className="space-y-3">
             <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-400">
@@ -169,12 +195,12 @@ export function EvidenceDrawer({ isOpen, onClose, data, onVerifyClaim }: Evidenc
                   <div className="text-xs text-slate-400">Publication & Document Dates</div>
                   <div className="text-sm text-slate-200">
                     {data.publicationDate ? (
-                      <span>Published: {data.publicationDate}</span>
+                      <span>Published: {formatDisplayDate(data.publicationDate)}</span>
                     ) : (
                       <span className="text-amber-400">Publication Date Undated</span>
                     )}
                     {data.updatedDate && (
-                      <span className="text-slate-400 ml-2">(Updated: {data.updatedDate})</span>
+                      <span className="text-slate-400 ml-2">(Updated: {formatDisplayDate(data.updatedDate)})</span>
                     )}
                   </div>
                 </div>
@@ -207,7 +233,7 @@ export function EvidenceDrawer({ isOpen, onClose, data, onVerifyClaim }: Evidenc
               <span>Evidence Integrity Guarantee</span>
             </div>
             <p>
-              This passage was verbatim extracted from the underlying document or web URL. Digital Dark Spot maintains immutable citations and does not hallucinate supporting evidence.
+              Exact supporting evidence is extracted verbatim from reviewed documentation. DIGITAL DARK SPOT maintains immutable citations, never invents supporting references, and explicitly flags missing information.
             </p>
           </div>
         </div>

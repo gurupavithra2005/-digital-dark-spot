@@ -1,0 +1,53 @@
+[
+  {
+    "id": "task-live-1",
+    "projectId": "live-pmusp-csss-2026-audit",
+    "title": "Confirm Definitive Renewal Application Deadline with NSP Helpdesk",
+    "reason": "Critical conflict detected: All-Scholarships states 30-11-2026, while Students notice desk states 31-10-2026.",
+    "relatedFinding": "PM-USP CSSS Application & Renewal Closing Deadlines",
+    "suggestedOfficialSource": "NSP Official Helpdesk (helpdesk@nsp.gov.in) & State Nodal Officer",
+    "priority": "high",
+    "status": "pending"
+  },
+  {
+    "id": "task-live-2",
+    "projectId": "live-pmusp-csss-2026-audit",
+    "title": "Verify Class XII Board-Specific 80th Percentile Cut-off Marks",
+    "reason": "80th percentile score threshold differs per state education board and stream.",
+    "relatedFinding": "Official 2026–27 State Board Cut-off Percentile Marks Circular",
+    "suggestedOfficialSource": "State Higher Secondary Board Circulars / NSP Scheme Specifications",
+    "priority": "high",
+    "status": "pending"
+  },
+  {
+    "id": "task-live-3",
+    "projectId": "live-pmusp-csss-2026-audit",
+    "title": "Confirm Designated Income Certificate Issuing Authority",
+    "reason": "Clarify whether Tahsildar or SDM digital revenue certificate is required for family income under Rs. 4.5 Lakh.",
+    "relatedFinding": "Authorized Income Certificate Issuing Authority Specification",
+    "suggestedOfficialSource": "District Revenue Authority & Institute Verification Officer",
+    "priority": "high",
+    "status": "pending"
+  },
+  {
+    "id": "task-live-4",
+    "projectId": "live-pmusp-csss-2026-audit",
+    "title": "Complete One Time Registration (OTR) and Verify Aadhaar-DBT Seeding",
+    "reason": "OTR is mandatory on NSP; scholarship disbursement fails if bank account is not Aadhaar-seeded.",
+    "relatedFinding": "Application Procedure & DBT Mandate",
+    "suggestedOfficialSource": "NSP OTR Portal & UIDAI Bank Seeding Status",
+    "priority": "high",
+    "status": "completed",
+    "completedAt": "2026-10-31T07:20:00Z"
+  },
+  {
+    "id": "task-live-5",
+    "projectId": "live-pmusp-csss-2026-audit",
+    "title": "Verify College Renewal Marks (≥50%) and Attendance (≥75%) Records",
+    "reason": "Renewal application is automatically rejected if institute does not certify 50% exam marks and 75% attendance.",
+    "relatedFinding": "Renewal Conditions",
+    "suggestedOfficialSource": "College Academic Registrar / Dean Office",
+    "priority": "medium",
+    "status": "pending"
+  }
+]

@@ -16,6 +16,7 @@ import {
   Sparkles
 } from 'lucide-react';
 import { ResearchProject } from '@/types/research';
+import { formatDisplayDate } from '@/lib/utils';
 
 interface ProjectsListViewProps {
   projects: ResearchProject[];
@@ -113,7 +114,7 @@ export function ProjectsListView({
 
                 <div className="flex items-center gap-2 text-xs text-slate-400">
                   <Calendar className="h-3.5 w-3.5 text-slate-500" />
-                  <span>{new Date(proj.updatedAt).toLocaleDateString()}</span>
+                  <span>{formatDisplayDate(proj.updatedAt)}</span>
                 </div>
               </div>
 

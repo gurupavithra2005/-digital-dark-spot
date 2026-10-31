@@ -48,8 +48,10 @@ import {
 import { 
   computeChecklistProgress, 
   getCoverageExplanation, 
-  generateVersionChangesSummary 
+  generateVersionChangesSummary,
+  calculateFindingsBreakdown
 } from '@/lib/analysis-logic';
+import { formatDisplayDate } from '@/lib/utils';
 import { recordAnalysisVersion, addActivity } from '@/lib/storage';
 import { EvidenceDrawer, EvidenceDrawerData } from './EvidenceDrawer';
 import { ReportModal } from './ReportModal';
@@ -57,13 +59,69 @@ import { ReportModal } from './ReportModal';
 interface ProjectWorkspaceProps {
   project: ResearchProject;
   initialTab?: string;
+  initialFindingId?: string;
   onUpdateProject: (updated: ResearchProject) => void;
   onBackToDashboard: () => void;
+}
+
+function getInitialEvidence(project: ResearchProject, initialFindingId?: string): EvidenceDrawerData | null {
+  if (!initialFindingId) return null;
+  const gap = (project.gaps || []).find((g) => g.id === initialFindingId);
+  if (gap) {
+    const relatedSrc = (project.sources || []).find((s) => gap.relatedSourceIds?.includes(s.id));
+    return {
+      title: gap.title,
+      findingType: 'gap',
+      supportingPassage: gap.whatWasFound
+        ? `What Was Found in Reviewed Documents: "${gap.whatWasFound}"\n\nWhat Was NOT Found: "${gap.whatWasNotFound}"\n\n[Potential Information Gap — Not found in the sources reviewed]`
+        : 'Potential Information Gap — Not found in the sources reviewed.',
+      sourceTitle: relatedSrc?.title || gap.suggestedSourceToVerify || 'Reviewed Project Documentation',
+      sourceUrl: relatedSrc?.url,
+      publicationDate: relatedSrc?.publicationDate,
+      organization: relatedSrc?.organization,
+      confidence: gap.aiConfidence,
+      reasonForFinding: gap.whyItMatters,
+      verificationRecommendation: `${gap.recommendedAction} (Suggested authority to verify: ${gap.suggestedSourceToVerify})`,
+    };
+  }
+
+  const c = (project.conflicts || []).find((c) => c.id === initialFindingId);
+  if (c) {
+    return {
+      title: `Conflicting Claim: ${c.aspect}`,
+      findingType: 'conflict',
+      supportingPassage: `Source A (${c.sourceA.sourceTitle}): "${c.sourceA.supportingPassage}"\n\nSource B (${c.sourceB.sourceTitle}): "${c.sourceB.supportingPassage}"`,
+      sourceTitle: `${c.sourceA.sourceTitle} vs ${c.sourceB.sourceTitle}`,
+      sourceUrl: c.sourceA.url || c.sourceB.url,
+      publicationDate: c.sourceA.date || c.sourceB.date,
+      confidence: c.aiConfidence,
+      reasonForFinding: c.explanation,
+      verificationRecommendation: c.recommendedAction,
+    };
+  }
+
+  const w = (project.freshnessWarnings || []).find((w) => w.id === initialFindingId);
+  if (w) {
+    return {
+      title: `Source Freshness Warning: ${w.sourceTitle}`,
+      findingType: 'freshness',
+      supportingPassage: `Source Publication Date: ${w.availableDate ? formatDisplayDate(w.availableDate) : 'Date Unknown'}. Status: ${w.status.replace(/_/g, ' ')}.`,
+      sourceTitle: w.sourceTitle,
+      sourceUrl: w.sourceUrl,
+      publicationDate: w.availableDate,
+      confidence: 95,
+      reasonForFinding: `${w.warningReason} (Affected: ${w.affectedInformation})`,
+      verificationRecommendation: w.suggestedAction,
+    };
+  }
+
+  return null;
 }
 
 export function ProjectWorkspace({ 
   project, 
   initialTab = 'overview', 
+  initialFindingId,
   onUpdateProject, 
   onBackToDashboard 
 }: ProjectWorkspaceProps) {
@@ -74,9 +132,13 @@ export function ProjectWorkspace({
   // Executive summary "Read More" clamp
   const [isSummaryExpanded, setIsSummaryExpanded] = useState(false);
 
-  // Evidence panel state
-  const [evidenceData, setEvidenceData] = useState<EvidenceDrawerData | null>(null);
-  const [isEvidenceOpen, setIsEvidenceOpen] = useState(false);
+  // Evidence panel state (initialized with initialFindingId if present)
+  const [evidenceData, setEvidenceData] = useState<EvidenceDrawerData | null>(() => 
+    getInitialEvidence(project, initialFindingId)
+  );
+  const [isEvidenceOpen, setIsEvidenceOpen] = useState(() => 
+    Boolean(getInitialEvidence(project, initialFindingId))
+  );
 
   // Report modal state
   const [isReportOpen, setIsReportOpen] = useState(false);
@@ -118,10 +180,8 @@ export function ProjectWorkspace({
   // Key metrics
   const checklistStats = computeChecklistProgress(project.checklist || []);
   const coverageBreakdown = getCoverageExplanation(project.coverageMatrix || []);
-  const openFindingsCount = 
-    (project.gaps || []).filter((g) => g.reviewStatus !== 'dismissed').length +
-    (project.conflicts || []).filter((c) => c.reviewStatus !== 'dismissed').length +
-    (project.freshnessWarnings || []).filter((w) => w.reviewStatus !== 'dismissed').length;
+  const findingsBreakdown = calculateFindingsBreakdown(project);
+  const openFindingsCount = findingsBreakdown.openCount;
 
   const currentVersion = project.analysisVersions && project.analysisVersions.length > 0 
     ? project.analysisVersions[project.analysisVersions.length - 1] 
@@ -131,6 +191,52 @@ export function ProjectWorkspace({
     setEvidenceData(data);
     setIsEvidenceOpen(true);
   };
+
+  const handleInspectGap = React.useCallback((gap: InformationGap) => {
+    const relatedSrc = (project.sources || []).find((s) => gap.relatedSourceIds?.includes(s.id));
+    openEvidence({
+      title: gap.title,
+      findingType: 'gap',
+      supportingPassage: gap.whatWasFound
+        ? `What Was Found in Reviewed Documents: "${gap.whatWasFound}"\n\nWhat Was NOT Found: "${gap.whatWasNotFound}"\n\n[Potential Information Gap — Not found in the sources reviewed]`
+        : 'Potential Information Gap — Not found in the sources reviewed.',
+      sourceTitle: relatedSrc?.title || gap.suggestedSourceToVerify || 'Reviewed Project Documentation',
+      sourceUrl: relatedSrc?.url,
+      publicationDate: relatedSrc?.publicationDate,
+      organization: relatedSrc?.organization,
+      confidence: gap.aiConfidence,
+      reasonForFinding: gap.whyItMatters,
+      verificationRecommendation: `${gap.recommendedAction} (Suggested authority to verify: ${gap.suggestedSourceToVerify})`,
+    });
+  }, [project.sources]);
+
+  const handleInspectConflict = React.useCallback((c: ConflictingClaim) => {
+    openEvidence({
+      title: `Conflicting Claim: ${c.aspect}`,
+      findingType: 'conflict',
+      supportingPassage: `Source A (${c.sourceA.sourceTitle}): "${c.sourceA.supportingPassage}"\n\nSource B (${c.sourceB.sourceTitle}): "${c.sourceB.supportingPassage}"`,
+      sourceTitle: `${c.sourceA.sourceTitle} vs ${c.sourceB.sourceTitle}`,
+      sourceUrl: c.sourceA.url || c.sourceB.url,
+      publicationDate: c.sourceA.date || c.sourceB.date,
+      confidence: c.aiConfidence,
+      reasonForFinding: c.explanation,
+      verificationRecommendation: c.recommendedAction,
+    });
+  }, []);
+
+  const handleInspectFreshness = React.useCallback((w: OutdatedSourceWarning) => {
+    openEvidence({
+      title: `Source Freshness Warning: ${w.sourceTitle}`,
+      findingType: 'freshness',
+      supportingPassage: `Source Publication Date: ${w.availableDate ? formatDisplayDate(w.availableDate) : 'Date Unknown'}. Status: ${w.status.replace(/_/g, ' ')}.`,
+      sourceTitle: w.sourceTitle,
+      sourceUrl: w.sourceUrl,
+      publicationDate: w.availableDate,
+      confidence: 95,
+      reasonForFinding: `${w.warningReason} (Affected: ${w.affectedInformation})`,
+      verificationRecommendation: w.suggestedAction,
+    });
+  }, []);
 
   // RE-ANALYZE RESEARCH & VERSION RECORDING
   const handleReanalyze = async () => {
@@ -378,7 +484,7 @@ export function ProjectWorkspace({
                 </button>
               )}
               <span className="text-[11px] text-slate-400">
-                Analyzed: {new Date(project.updatedAt).toLocaleDateString()}
+                Analyzed: {formatDisplayDate(project.updatedAt)}
               </span>
             </div>
 
@@ -430,6 +536,9 @@ export function ProjectWorkspace({
           <div className="rounded-xl border border-amber-500/20 bg-amber-950/10 p-3">
             <div className="text-xs font-semibold text-amber-300 uppercase tracking-wider">Open Findings</div>
             <div className="text-xl font-extrabold text-amber-400 mt-0.5">{openFindingsCount}</div>
+            <div className="text-[10px] text-slate-400 mt-0.5">
+              {findingsBreakdown.total} Total ({findingsBreakdown.resolvedCount} Resolved/Other)
+            </div>
           </div>
           <div className="rounded-xl border border-emerald-500/20 bg-emerald-950/10 p-3">
             <div className="text-xs font-semibold text-emerald-300 uppercase tracking-wider">Pending Verification</div>
@@ -448,7 +557,7 @@ export function ProjectWorkspace({
                 <span>What Changed Since Last Analysis? (Version {currentVersion.versionNumber})</span>
               </span>
               <span className="text-[11px] text-slate-400">
-                {new Date(currentVersion.analyzedAt).toLocaleString()}
+                {formatDisplayDate(currentVersion.analyzedAt)}
               </span>
             </div>
 
@@ -741,7 +850,7 @@ export function ProjectWorkspace({
 
                   <div className="flex flex-wrap items-center gap-4 text-xs text-slate-400">
                     {src.organization && <div>Organization: {src.organization}</div>}
-                    <div>Date: {src.publicationDate || 'Date not available'}</div>
+                    <div>Date: {src.publicationDate ? formatDisplayDate(src.publicationDate) : 'Date not available'}</div>
                     <div>Extraction Confidence: {src.extractionConfidence}%</div>
                   </div>
 
@@ -920,6 +1029,15 @@ export function ProjectWorkspace({
                     {/* Review Action Buttons */}
                     <div className="flex items-center gap-1.5">
                       <button
+                        onClick={() => handleInspectGap(gap)}
+                        className="rounded-lg bg-blue-600/20 hover:bg-blue-600/30 border border-blue-500/30 px-2.5 py-1 text-xs font-semibold text-blue-300 transition-colors flex items-center gap-1"
+                        title="View exact evidence details, source, and verification recommendations"
+                      >
+                        <Quote className="h-3 w-3" />
+                        <span>Inspect Evidence</span>
+                      </button>
+
+                      <button
                         onClick={() => handleReviewGap(gap.id, 'confirmed')}
                         className="rounded-lg bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-500/30 px-2.5 py-1 text-xs font-semibold text-emerald-300 transition-colors"
                       >
@@ -948,6 +1066,52 @@ export function ProjectWorkspace({
               );
             })}
           </div>
+
+          {/* Unanswered Questions Section (DS-14) */}
+          {project.unansweredQuestions && project.unansweredQuestions.length > 0 && (
+            <div className="pt-6 border-t border-slate-800 space-y-4">
+              <div>
+                <h3 className="text-base font-bold text-white flex items-center gap-2">
+                  <HelpCircle className="h-4 w-4 text-amber-400" />
+                  <span>Unanswered Research Questions Identified Across Sources</span>
+                </h3>
+                <p className="text-xs text-slate-400">
+                  Critical inquiries highlighted by the research criteria that remain unresolved by reviewed materials
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+                {project.unansweredQuestions.map((q) => (
+                  <div key={q.id} className="rounded-2xl border border-slate-800 bg-[#0e1422] p-5 space-y-3 shadow-sm">
+                    <div className="flex items-center justify-between">
+                      <span className="rounded bg-amber-950 border border-amber-500/40 px-2 py-0.5 text-[10px] font-bold uppercase text-amber-300">
+                        {q.priority} Priority
+                      </span>
+                      <span className="text-[10px] text-slate-400 truncate max-w-[200px]">
+                        {q.relatedSourceTitles?.join(', ')}
+                      </span>
+                    </div>
+
+                    <h4 className="text-sm font-semibold text-white leading-snug">{q.question}</h4>
+
+                    <div className="text-xs text-slate-300">
+                      <strong className="text-slate-400">Why It Matters:</strong> {q.whyItMatters}
+                    </div>
+
+                    {q.relatedInformationFound && (
+                      <div className="text-xs text-slate-400">
+                        <strong className="text-slate-500">Related Info Found:</strong> {q.relatedInformationFound}
+                      </div>
+                    )}
+
+                    <div className="rounded-lg bg-[#090d16] p-2.5 text-xs text-blue-300 border border-slate-800">
+                      <strong className="text-slate-400">Suggested Verification Step:</strong> {q.suggestedVerificationStep}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       )}
 
@@ -986,7 +1150,7 @@ export function ProjectWorkspace({
                   <div className="rounded-xl border border-slate-800 bg-[#090d16] p-4 space-y-2">
                     <div className="flex items-center justify-between text-xs">
                       <span className="font-bold text-blue-400 uppercase text-[10px]">Source A {c.sourceA.isOfficial && '(Official)'}</span>
-                      <span className="text-slate-400">{c.sourceA.date || 'Date not available'}</span>
+                      <span className="text-slate-400">{c.sourceA.date ? formatDisplayDate(c.sourceA.date) : 'Date not available'}</span>
                     </div>
                     <div className="text-xs font-semibold text-white">{c.sourceA.sourceTitle}</div>
                     <blockquote className="rounded bg-[#121826] p-3 text-xs italic text-slate-200 border border-slate-800">
@@ -997,7 +1161,7 @@ export function ProjectWorkspace({
                   <div className="rounded-xl border border-slate-800 bg-[#090d16] p-4 space-y-2">
                     <div className="flex items-center justify-between text-xs">
                       <span className="font-bold text-purple-400 uppercase text-[10px]">Source B {c.sourceB.isOfficial && '(Official)'}</span>
-                      <span className="text-slate-400">{c.sourceB.date || 'Date not available'}</span>
+                      <span className="text-slate-400">{c.sourceB.date ? formatDisplayDate(c.sourceB.date) : 'Date not available'}</span>
                     </div>
                     <div className="text-xs font-semibold text-white">{c.sourceB.sourceTitle}</div>
                     <blockquote className="rounded bg-[#121826] p-3 text-xs italic text-slate-200 border border-slate-800">
@@ -1018,6 +1182,13 @@ export function ProjectWorkspace({
                   </span>
 
                   <div className="flex items-center gap-1.5">
+                    <button
+                      onClick={() => handleInspectConflict(c)}
+                      className="rounded bg-blue-600/20 hover:bg-blue-600/30 text-blue-300 border border-blue-500/30 px-2.5 py-1 text-xs font-semibold flex items-center gap-1"
+                    >
+                      <Quote className="h-3 w-3" />
+                      <span>Inspect Evidence</span>
+                    </button>
                     <button
                       onClick={() => handleReviewConflict(c.id, 'confirmed')}
                       className="rounded bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-300 border border-emerald-500/30 px-2.5 py-1 text-xs font-semibold"
@@ -1061,16 +1232,26 @@ export function ProjectWorkspace({
                     </span>
                     <h3 className="text-sm font-bold text-white">{w.sourceTitle}</h3>
                   </div>
-                  <span className="text-xs text-slate-400">Date on Record: {w.availableDate || 'Date not available'}</span>
+                  <span className="text-xs text-slate-400">Date on Record: {w.availableDate ? formatDisplayDate(w.availableDate) : 'Date not available'}</span>
                 </div>
 
                 <p className="text-xs text-slate-200 bg-[#090d16] p-3 rounded-xl border border-slate-800">
                   {w.warningReason}
                 </p>
 
-                <div className="text-xs text-slate-400 flex flex-wrap gap-4">
-                  <div><strong>Affected Data:</strong> {w.affectedInformation}</div>
-                  <div><strong className="text-amber-400">Action:</strong> {w.suggestedAction}</div>
+                <div className="pt-2 border-t border-slate-800/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  <div className="text-xs text-slate-400 flex flex-wrap gap-4">
+                    <div><strong>Affected Data:</strong> {w.affectedInformation}</div>
+                    <div><strong className="text-amber-400">Action:</strong> {w.suggestedAction}</div>
+                  </div>
+
+                  <button
+                    onClick={() => handleInspectFreshness(w)}
+                    className="rounded-lg bg-blue-600/20 hover:bg-blue-600/30 border border-blue-500/30 px-2.5 py-1 text-xs font-semibold text-blue-300 transition-colors flex items-center gap-1 shrink-0 self-start sm:self-auto"
+                  >
+                    <Quote className="h-3 w-3" />
+                    <span>Inspect Evidence</span>
+                  </button>
                 </div>
               </div>
             ))}

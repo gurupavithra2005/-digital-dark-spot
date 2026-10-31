@@ -100,18 +100,26 @@ export function setActiveProjectId(id: string): void {
 }
 
 export function resetToDemo(): ResearchProject {
+  const now = new Date();
+  const demo: ResearchProject = {
+    ...SAMPLE_SCHOLARSHIP_PROJECT,
+    createdAt: new Date(now.getTime() - 45 * 60 * 1000).toISOString(),
+    updatedAt: now.toISOString(),
+  };
+
   if (typeof window !== 'undefined') {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify([SAMPLE_SCHOLARSHIP_PROJECT]));
-    setActiveProjectId(SAMPLE_SCHOLARSHIP_PROJECT.id);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify([demo]));
+    setActiveProjectId(demo.id);
     addActivity({
       type: 'project_created',
       title: 'Demo Loaded',
       description: 'Loaded Illustrative Scholarship Verification Scenario',
-      projectId: SAMPLE_SCHOLARSHIP_PROJECT.id,
+      projectId: demo.id,
     });
   }
-  return SAMPLE_SCHOLARSHIP_PROJECT;
+  return demo;
 }
+
 
 export function clearAllLocalData(): void {
   if (typeof window !== 'undefined') {
@@ -181,43 +189,48 @@ export function recordAnalysisVersion(project: ResearchProject, changes?: string
 /**
  * Activity Feed Management
  */
+export const INITIAL_ACTIVITIES: ActivityItem[] = [
+  {
+    id: 'act-1',
+    type: 'analysis_completed',
+    title: 'Intelligence Analysis Completed',
+    description: 'Synthesized 3 sources for National Merit Scholarship review',
+    timestamp: '2026-10-31T07:00:00.000Z',
+    projectId: 'demo-scholarship-2026',
+  },
+  {
+    id: 'act-2',
+    type: 'finding_confirmed',
+    title: 'Gap Confirmed by Researcher',
+    description: 'Confirmed official document requirement for Revenue Certificate',
+    timestamp: '2026-10-31T07:01:00.000Z',
+    projectId: 'demo-scholarship-2026',
+  },
+  {
+    id: 'act-3',
+    type: 'task_completed',
+    title: 'Verification Action Verified',
+    description: 'Dean office Room 104 verification workflow confirmed',
+    timestamp: '2026-10-31T07:02:00.000Z',
+    projectId: 'demo-scholarship-2026',
+  }
+];
+
 export function getActivities(): ActivityItem[] {
-  if (typeof window === 'undefined') return [];
+  if (typeof window === 'undefined') return INITIAL_ACTIVITIES;
   try {
     const raw = localStorage.getItem(ACTIVITIES_KEY);
     if (!raw) {
-      const initial: ActivityItem[] = [
-        {
-          id: 'act-1',
-          type: 'analysis_completed',
-          title: 'Intelligence Analysis Completed',
-          description: 'Synthesized 3 sources for National Merit Scholarship review',
-          timestamp: new Date().toISOString(),
-          projectId: 'demo-scholarship-2026',
-        },
-        {
-          id: 'act-2',
-          type: 'finding_confirmed',
-          title: 'Gap Confirmed by Researcher',
-          description: 'Confirmed official document requirement for Revenue Certificate',
-          timestamp: new Date().toISOString(),
-          projectId: 'demo-scholarship-2026',
-        },
-        {
-          id: 'act-3',
-          type: 'task_completed',
-          title: 'Verification Action Verified',
-          description: 'Dean office Room 104 verification workflow confirmed',
-          timestamp: new Date().toISOString(),
-          projectId: 'demo-scholarship-2026',
-        }
-      ];
-      localStorage.setItem(ACTIVITIES_KEY, JSON.stringify(initial));
-      return initial;
+      localStorage.setItem(ACTIVITIES_KEY, JSON.stringify(INITIAL_ACTIVITIES));
+      return INITIAL_ACTIVITIES;
     }
-    return JSON.parse(raw);
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed) || parsed.length === 0) {
+      return INITIAL_ACTIVITIES;
+    }
+    return parsed;
   } catch {
-    return [];
+    return INITIAL_ACTIVITIES;
   }
 }
 

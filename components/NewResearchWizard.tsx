@@ -160,6 +160,32 @@ export function NewResearchWizard({ onAnalysisComplete, onCancel }: NewResearchW
     }
   };
 
+  const handleAddFailedSource = (urlToRecord: string, reason: string) => {
+    let domain = 'unknown';
+    try {
+      domain = new URL(urlToRecord).hostname;
+    } catch {}
+    const filename = urlToRecord.split('/').pop()?.replace(/\.pdf$/i, '') || urlToRecord;
+    const failedSource: Source = {
+      id: `src-fail-${Date.now()}`,
+      projectId: '',
+      title: decodeURIComponent(filename).replace(/[_-]+/g, ' ').trim() || urlToRecord,
+      type: urlToRecord.toLowerCase().endsWith('.pdf') ? 'document' : 'url',
+      category: classifySourceCategory(domain, ''),
+      url: urlToRecord,
+      domain,
+      organization: domain.includes('gov.in') ? 'Government of India / Ministry of Education' : domain,
+      accessedAt: new Date().toISOString(),
+      extractedText: '',
+      extractionStatus: 'failed',
+      extractionConfidence: 0,
+      notes: reason,
+    };
+    setSources((prev) => [...prev, failedSource]);
+    setInputUrl('');
+    setUrlError(null);
+  };
+
   // Add pasted source with duplicate check
   const handleAddPastedSource = () => {
     if (!pasteTitle.trim() || !pasteText.trim()) return;
@@ -576,7 +602,23 @@ DEADLINE: Online portal is reported open until November 30, 2026.`,
                 </button>
               </div>
 
-              {urlError && <div className="text-xs text-rose-400">{urlError}</div>}
+              {urlError && (
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 p-3 rounded-xl bg-rose-950/40 border border-rose-500/40 text-xs">
+                  <div className="text-rose-300 flex items-center gap-2">
+                    <AlertTriangle className="h-4 w-4 shrink-0 text-rose-400" />
+                    <span>{urlError}</span>
+                  </div>
+                  {inputUrl && (
+                    <button
+                      type="button"
+                      onClick={() => handleAddFailedSource(inputUrl, urlError)}
+                      className="shrink-0 px-3 py-1 bg-rose-600/30 hover:bg-rose-600/50 border border-rose-500/50 rounded-lg text-rose-200 font-semibold"
+                    >
+                      Record as Extraction Failed
+                    </button>
+                  )}
+                </div>
+              )}
             </div>
           )}
 

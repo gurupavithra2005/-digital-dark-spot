@@ -1,4 +1,14 @@
-import { ResearchProject, AnalysisVersion } from '@/types/research';
+import { ResearchProject } from '@/types/research';
+
+// Deterministic base date (31 Oct 2026 UTC) to guarantee 100% hydration matching between SSR and client
+const currentYear = 2026;
+const pastCycleYear = currentYear - 3;
+const lastYear = currentYear - 1;
+const baseTimestamp = new Date(Date.UTC(2026, 9, 31, 7, 0, 0)).getTime();
+const nowIso = new Date(baseTimestamp).toISOString();
+const fortyFiveMinsAgoIso = new Date(baseTimestamp - 45 * 60 * 1000).toISOString();
+const thirtyMinsAgoIso = new Date(baseTimestamp - 30 * 60 * 1000).toISOString();
+const fiveMinsAgoIso = new Date(baseTimestamp - 5 * 60 * 1000).toISOString();
 
 export const SAMPLE_SCHOLARSHIP_PROJECT: ResearchProject = {
   id: 'demo-scholarship-2026',
@@ -18,12 +28,12 @@ export const SAMPLE_SCHOLARSHIP_PROJECT: ResearchProject = {
     'Official Application Link'
   ],
   status: 'completed',
-  createdAt: '2026-10-31T09:30:00.000Z',
-  updatedAt: '2026-10-31T10:15:00.000Z',
+  createdAt: fortyFiveMinsAgoIso,
+  updatedAt: nowIso,
   isSampleDemo: true,
   isDemo: true,
   demoDisclaimer: 'ILLUSTRATIVE DEMO DATA — NOT LIVE OFFICIAL INFORMATION',
-  executiveSummary: 'Reviewed 3 disparate sources (1 official portal notice, 1 secondary educational advisory guide, and 1 university financial aid handbook). While primary eligibility thresholds and funding amounts are well-documented, the analysis identified a critical conflict regarding income limits and document submission formats, a high-severity freshness warning on an expired 2023–2024 cycle date, and a complete absence of renewal terms across all reviewed texts. Actionable verification checklist prioritized below.',
+  executiveSummary: 'Reviewed 3 disparate sources (1 official portal notice, 1 secondary educational advisory guide, and 1 university financial aid handbook). While primary eligibility thresholds and funding amounts are well-documented, the analysis identified a critical conflict regarding income limits and document submission formats, a high-severity freshness warning on an expired prior-cycle date, and a complete absence of renewal terms across all reviewed texts. Actionable verification checklist prioritized below.',
   coverageSummaryScore: 65,
   sources: [
     {
@@ -32,44 +42,44 @@ export const SAMPLE_SCHOLARSHIP_PROJECT: ResearchProject = {
       title: 'Official State Scholarship Portal - Gazette Notification No. 441',
       type: 'url',
       category: 'official_government',
-      url: 'https://scholarships.gov.in/notices/merit-scheme-2024.pdf',
+      url: 'https://scholarships.gov.in/notices/merit-scheme-prior.pdf',
       domain: 'scholarships.gov.in',
       organization: 'Ministry of Education & Human Resources',
-      publicationDate: '2023-11-15',
-      updatedDate: '2023-12-01',
-      accessedAt: '2026-10-31T09:32:00.000Z',
+      publicationDate: `${pastCycleYear}-11-15`,
+      updatedDate: `${pastCycleYear}-12-01`,
+      accessedAt: fortyFiveMinsAgoIso,
       extractionStatus: 'success',
       extractionConfidence: 96,
       extractedText: `GOVERNMENT OF INDIA / STATE HIGHER EDUCATION COUNCIL
-SCHEME CODE: NMS-2024
+SCHEME CODE: NMS-${pastCycleYear}
 OBJECTIVE: Financial assistance to meritorious students from economically weaker sections enrolled in undergraduate degrees.
 BENEFIT: Direct Bank Transfer (DBT) of ₹50,000 per academic year for tuition and study allowance.
 ELIGIBILITY: Minimum 80th percentile in Higher Secondary Examination (10+2) or equivalent board exam.
 ANNUAL FAMILY INCOME LIMIT: Must not exceed ₹2,50,000 per annum from all sources.
 MANDATORY DOCUMENTS: Competent authority signed Revenue Certificate issued within last 6 months, verified domicile certificate, bank passbook seeded with Aadhaar. Self-affidavits are strictly NOT accepted.
-APPLICATION DEADLINE: Last date for receipt of online application was December 15, 2023.`,
-      notes: 'Official notification, but published in late 2023 for the 2023-2024 cycle.'
+APPLICATION DEADLINE: Last date for receipt of online application was December 15, ${pastCycleYear}.`,
+      notes: `Official notification, but published for an earlier application cycle (${pastCycleYear}).`
     },
     {
       id: 'src-guide-02',
       projectId: 'demo-scholarship-2026',
-      title: 'EduFinder National Merit Scholarship 2026 Complete Guide',
+      title: `EduFinder National Merit Scholarship ${currentYear} Complete Guide`,
       type: 'url',
       category: 'secondary_news',
-      url: 'https://edufinder-portal.org/scholarships/merit-guide-2026',
+      url: `https://edufinder-portal.org/scholarships/merit-guide-${currentYear}`,
       domain: 'edufinder-portal.org',
       organization: 'EduFinder Educational Advisory',
-      publicationDate: '2026-08-10',
-      updatedDate: '2026-09-02',
-      accessedAt: '2026-10-31T09:33:00.000Z',
+      publicationDate: `${currentYear}-08-10`,
+      updatedDate: `${currentYear}-09-02`,
+      accessedAt: fortyFiveMinsAgoIso,
       extractionStatus: 'success',
       extractionConfidence: 88,
-      extractedText: `EduFinder Career & Scholarship Desk — Updated for 2026–2027 Cycle.
+      extractedText: `EduFinder Career & Scholarship Desk — Updated for ${currentYear}–${currentYear + 1} Cycle.
 The National Merit Scholarship provides ₹50,000 annually to selected college undergraduates.
 ELIGIBILITY UPDATE: Candidates must score at least 75% marks in their board examinations.
 FAMILY INCOME CEILING: Recently revised to ₹3,50,000 per annum to account for cost-of-living indexation.
 DOCUMENTATION: You may upload a notarized income declaration if the official Revenue Inspector certificate is delayed during admission season.
-DEADLINE: Online portal is reported open until November 30, 2026. Students should register via state NSP portal.`,
+DEADLINE: Online portal is reported open until November 30, ${currentYear}. Students should register via state NSP portal.`,
       notes: 'Secondary aggregator claims relaxed income ceiling and affidavit allowance, but cites no official gazette.'
     },
     {
@@ -81,8 +91,8 @@ DEADLINE: Online portal is reported open until November 30, 2026. Students shoul
       url: 'https://cityuniv.edu/financial-aid/bulletin-sec3.pdf',
       domain: 'cityuniv.edu',
       organization: 'City University Student Welfare Cell',
-      publicationDate: '2025-07-20',
-      accessedAt: '2026-10-31T09:35:00.000Z',
+      publicationDate: `${lastYear}-07-20`,
+      accessedAt: fortyFiveMinsAgoIso,
       extractionStatus: 'success',
       extractionConfidence: 91,
       pageCount: 4,
@@ -101,7 +111,7 @@ Note: Students who fail to obtain college seal before state portal closure canno
       projectId: 'demo-scholarship-2026',
       sourceId: 'src-portal-01',
       sourceTitle: 'Official State Scholarship Portal - Gazette Notification No. 441',
-      sourceUrl: 'https://scholarships.gov.in/notices/merit-scheme-2024.pdf',
+      sourceUrl: 'https://scholarships.gov.in/notices/merit-scheme-prior.pdf',
       category: 'Scholarship Amount',
       claimText: 'Scholarship provides ₹50,000 per academic year disbursed through Direct Bank Transfer (DBT).',
       supportingPassage: 'BENEFIT: Direct Bank Transfer (DBT) of ₹50,000 per academic year for tuition and study allowance.',
@@ -113,7 +123,7 @@ Note: Students who fail to obtain college seal before state portal closure canno
       projectId: 'demo-scholarship-2026',
       sourceId: 'src-portal-01',
       sourceTitle: 'Official State Scholarship Portal - Gazette Notification No. 441',
-      sourceUrl: 'https://scholarships.gov.in/notices/merit-scheme-2024.pdf',
+      sourceUrl: 'https://scholarships.gov.in/notices/merit-scheme-prior.pdf',
       category: 'Income Conditions',
       claimText: 'Family income ceiling is ₹2,50,000 per annum and self-affidavits are strictly forbidden.',
       supportingPassage: 'ANNUAL FAMILY INCOME LIMIT: Must not exceed ₹2,50,000 per annum from all sources... Self-affidavits are strictly NOT accepted.',
@@ -123,8 +133,8 @@ Note: Students who fail to obtain college seal before state portal closure canno
       id: 'claim-03',
       projectId: 'demo-scholarship-2026',
       sourceId: 'src-guide-02',
-      sourceTitle: 'EduFinder National Merit Scholarship 2026 Complete Guide',
-      sourceUrl: 'https://edufinder-portal.org/scholarships/merit-guide-2026',
+      sourceTitle: `EduFinder National Merit Scholarship ${currentYear} Complete Guide`,
+      sourceUrl: `https://edufinder-portal.org/scholarships/merit-guide-${currentYear}`,
       category: 'Income Conditions',
       claimText: 'Income ceiling is reported as ₹3,50,000 with temporary notarized income declaration permitted.',
       supportingPassage: 'FAMILY INCOME CEILING: Recently revised to ₹3,50,000 per annum... You may upload a notarized income declaration if official Revenue certificate is delayed.',
@@ -147,7 +157,7 @@ Note: Students who fail to obtain college seal before state portal closure canno
       projectId: 'demo-scholarship-2026',
       sourceId: 'src-portal-01',
       sourceTitle: 'Official State Scholarship Portal - Gazette Notification No. 441',
-      sourceUrl: 'https://scholarships.gov.in/notices/merit-scheme-2024.pdf',
+      sourceUrl: 'https://scholarships.gov.in/notices/merit-scheme-prior.pdf',
       category: 'Eligibility Criteria',
       claimText: 'Applicant must fall within the 80th percentile of their 10+2 higher secondary examination.',
       supportingPassage: 'ELIGIBILITY: Minimum 80th percentile in Higher Secondary Examination (10+2) or equivalent board exam.',
@@ -161,12 +171,12 @@ Note: Students who fail to obtain college seal before state portal closure canno
       title: 'Renewal Terms & Subsequent Year Continuation Conditions',
       gapType: 'missing_information',
       description: 'Potential Information Gap — Not found in the sources reviewed.',
-      whyItMatters: 'If this scholarship is only funded for the freshman year or requires minimum GPA/attendance thresholds for renewal, students may face unexpected tuition shortfalls in years 2–4.',
+      whyItMatters: 'Renewal requirements remain unstated in the reviewed documentation. Verification Question: What are the official renewal requirements?',
       whatWasFound: 'Only first-year entry eligibility (80th percentile / 75%) and initial award amount (₹50,000) are stated across all 3 documents.',
       whatWasNotFound: 'Criteria for renewing in Year 2, minimum college GPA required, maximum allowable backlog courses, or annual re-application window.',
       relatedSourceIds: ['src-portal-01', 'src-guide-02', 'src-univ-03'],
       suggestedSourceToVerify: 'State Department Scheme Guidelines document (Scheme Section: Maintenance & Renewal Criteria).',
-      recommendedAction: 'Directly contact the University Financial Aid Officer or inspect the official Ministry scheme manual for clause titled "Continuation of Award".',
+      recommendedAction: 'Directly contact the University Financial Aid Officer or inspect the official Ministry scheme manual to verify: What are the official renewal requirements?',
       priority: 'high',
       aiConfidence: 94,
       status: 'needs_verification',
@@ -178,31 +188,31 @@ Note: Students who fail to obtain college seal before state portal closure canno
       title: 'Official Document Checklist for Income & Revenue Certification',
       gapType: 'missing_document_requirements',
       description: 'Potential Information Gap — Not found in the sources reviewed.',
-      whyItMatters: 'Incompatible or outdated income certificates issued by non-gazetted officers frequently cause automated rejections at the state treasury level.',
+      whyItMatters: 'Requirements regarding the designated issuing authority and valid certificate format are not confirmed in official circulars. Verification Questions: Which authority is permitted to issue the required income certificate? What is the latest official document checklist?',
       whatWasFound: 'General mention of "Revenue Certificate" in Source 1 and "notarized declaration" in Source 2.',
       whatWasNotFound: 'Specific designation of issuing officer (e.g. Tehsildar vs Sub-Divisional Magistrate), valid issuance financial year, or digital QR certificate requirements.',
       relatedSourceIds: ['src-portal-01', 'src-guide-02'],
       suggestedSourceToVerify: 'Department of Revenue & Land Records guidelines on valid income certificate formats.',
-      recommendedAction: 'Verify whether a digital e-District certificate is mandatory or if physical Revenue Inspector seal is acceptable.',
+      recommendedAction: 'Consult the competent revenue authority to answer: Which authority is permitted to issue the required income certificate, and what is the latest official document checklist?',
       priority: 'high',
       aiConfidence: 89,
       status: 'needs_verification',
       reviewStatus: 'confirmed',
-      reviewedAt: '2026-10-31T09:40:00.000Z',
+      reviewedAt: thirtyMinsAgoIso,
       userReviewNotes: 'Confirmed with student council that Tehsildar seal is required.'
     },
     {
       id: 'gap-03',
       projectId: 'demo-scholarship-2026',
-      title: 'Current Application Deadline for Active 2026 Cycle',
+      title: 'Current Application Deadline for Active Cycle',
       gapType: 'missing_dates_deadlines',
       description: 'Potential Information Gap — Not found in the sources reviewed.',
-      whyItMatters: 'Relying on expired or unofficial blog dates risks missing the registration cutoff, with no late-submission appeals accepted.',
-      whatWasFound: 'Source 1 lists an expired 2023 date (Dec 15, 2023). Source 2 mentions November 30, 2026 without official circular citation.',
-      whatWasNotFound: 'Official Gazette or Department press release establishing the verified last date for the 2026–2027 cycle.',
+      whyItMatters: 'Official circulars have not established the active cycle deadline or whether deadline extensions or appeals are permitted. Verification Questions: What is the current application deadline? Are late submissions or deadline extensions permitted?',
+      whatWasFound: 'Source 1 lists an expired prior-cycle date. Source 2 mentions November 30 without official gazette citation.',
+      whatWasNotFound: 'Official Gazette or Department press release establishing the verified last date and extension policy for the active cycle.',
       relatedSourceIds: ['src-portal-01', 'src-guide-02'],
       suggestedSourceToVerify: 'Official National Scholarship Portal (NSP) active announcement banner.',
-      recommendedAction: 'Check the live portal landing page announcements section for Gazette confirmation.',
+      recommendedAction: 'Check the live portal landing page announcements section to answer: What is the current application deadline, and are late submissions or deadline extensions permitted?',
       priority: 'high',
       aiConfidence: 96,
       status: 'investigating',
@@ -216,27 +226,27 @@ Note: Students who fail to obtain college seal before state portal closure canno
       aspect: 'Annual Family Income Limit & Affidavit Policy',
       conflictType: 'different_eligibility',
       label: 'Possible Conflict',
-      explanation: 'Official Source A specifies a strict ₹2,50,000 ceiling and explicitly forbids self-affidavits. Secondary Source B claims the ceiling has been raised to ₹3,50,000 and allows temporary notarized affidavits. If Source B is unverified or refers to a different scheme, relying on it could lead to disqualification.',
+      explanation: 'Official Source A specifies a strict ₹2,50,000 ceiling and explicitly states self-affidavits are not accepted. Secondary Source B claims the ceiling has been revised to ₹3,50,000 and suggests notarized declarations. Verification is required to determine which authority is permitted to issue the required income certificate.',
       aiConfidence: 92,
       sourceA: {
         sourceId: 'src-portal-01',
         sourceTitle: 'Official State Scholarship Portal - Gazette Notification No. 441',
-        url: 'https://scholarships.gov.in/notices/merit-scheme-2024.pdf',
-        date: '2023-11-15',
-        claimText: 'Income limit ≤ ₹2,50,000 per annum; self-affidavits strictly forbidden.',
+        url: 'https://scholarships.gov.in/notices/merit-scheme-prior.pdf',
+        date: `${pastCycleYear}-11-15`,
+        claimText: 'Income limit ≤ ₹2,50,000 per annum; self-affidavits not accepted.',
         supportingPassage: 'ANNUAL FAMILY INCOME LIMIT: Must not exceed ₹2,50,000 per annum from all sources... Self-affidavits are strictly NOT accepted.',
         isOfficial: true
       },
       sourceB: {
         sourceId: 'src-guide-02',
-        sourceTitle: 'EduFinder National Merit Scholarship 2026 Complete Guide',
-        url: 'https://edufinder-portal.org/scholarships/merit-guide-2026',
-        date: '2026-08-10',
-        claimText: 'Income ceiling revised to ₹3,50,000; notarized declarations accepted.',
+        sourceTitle: `EduFinder National Merit Scholarship ${currentYear} Complete Guide`,
+        url: `https://edufinder-portal.org/scholarships/merit-guide-${currentYear}`,
+        date: `${currentYear}-08-10`,
+        claimText: 'Income ceiling reported as revised to ₹3,50,000; notarized declarations mentioned.',
         supportingPassage: 'FAMILY INCOME CEILING: Recently revised to ₹3,50,000 per annum... You may upload a notarized income declaration if the official Revenue Inspector certificate is delayed.',
         isOfficial: false
       },
-      recommendedAction: 'Do NOT rely on the ₹3,50,000 figure until confirmed against the active 2026 Ministry Gazette or official NSP portal notice. Obtain a formal Revenue Certificate under ₹2,50,000 to remain safely compliant.',
+      recommendedAction: 'Verify against the active Ministry Gazette or official NSP portal notice. Verification Question: Which authority is permitted to issue the required income certificate?',
       resolutionStatus: 'unresolved',
       reviewStatus: 'needs_review'
     },
@@ -251,17 +261,17 @@ Note: Students who fail to obtain college seal before state portal closure canno
       sourceA: {
         sourceId: 'src-portal-01',
         sourceTitle: 'Official State Scholarship Portal - Gazette Notification No. 441',
-        url: 'https://scholarships.gov.in/notices/merit-scheme-2024.pdf',
-        date: '2023-11-15',
+        url: 'https://scholarships.gov.in/notices/merit-scheme-prior.pdf',
+        date: `${pastCycleYear}-11-15`,
         claimText: 'Minimum 80th percentile in Higher Secondary Examination (10+2).',
         supportingPassage: 'ELIGIBILITY: Minimum 80th percentile in Higher Secondary Examination (10+2) or equivalent board exam.',
         isOfficial: true
       },
       sourceB: {
         sourceId: 'src-guide-02',
-        sourceTitle: 'EduFinder National Merit Scholarship 2026 Complete Guide',
-        url: 'https://edufinder-portal.org/scholarships/merit-guide-2026',
-        date: '2026-08-10',
+        sourceTitle: `EduFinder National Merit Scholarship ${currentYear} Complete Guide`,
+        url: `https://edufinder-portal.org/scholarships/merit-guide-${currentYear}`,
+        date: `${currentYear}-08-10`,
         claimText: 'Candidates must score at least 75% marks in board examinations.',
         supportingPassage: 'ELIGIBILITY UPDATE: Candidates must score at least 75% marks in their board examinations.',
         isOfficial: false
@@ -276,24 +286,24 @@ Note: Students who fail to obtain college seal before state portal closure canno
       id: 'fresh-01',
       sourceId: 'src-portal-01',
       sourceTitle: 'Official State Scholarship Portal - Gazette Notification No. 441',
-      sourceUrl: 'https://scholarships.gov.in/notices/merit-scheme-2024.pdf',
-      availableDate: '2023-11-15',
+      sourceUrl: 'https://scholarships.gov.in/notices/merit-scheme-prior.pdf',
+      availableDate: `${pastCycleYear}-11-15`,
       status: 'earlier_application_cycle',
-      warningReason: 'Document refers to academic cycle 2023–2024 and lists an expired deadline of December 15, 2023. Current operational year is 2026.',
+      warningReason: `Document refers to an earlier academic cycle (${pastCycleYear}) and lists an expired deadline. Current operational year is ${currentYear}.`,
       affectedInformation: 'Deadlines, potentially outdated income slabs, and submission dates.',
-      suggestedAction: 'Locate the latest 2026–2027 Gazette Notification or press circular on the official government portal.',
+      suggestedAction: 'Locate the latest Gazette Notification or press circular on the official government portal. Verification Question: What is the current application deadline?',
       severity: 'high',
       reviewStatus: 'confirmed',
-      reviewedAt: '2026-10-31T09:42:00.000Z'
+      reviewedAt: thirtyMinsAgoIso
     },
     {
       id: 'fresh-02',
       sourceId: 'src-univ-03',
       sourceTitle: 'City University Student Financial Aid Bulletin & Application Steps',
       sourceUrl: 'https://cityuniv.edu/financial-aid/bulletin-sec3.pdf',
-      availableDate: '2025-07-20',
+      availableDate: `${lastYear}-07-20`,
       status: 'currentness_not_established',
-      warningReason: 'Document was compiled 15 months ago; university verification room assignments and digital countersign workflows may have shifted.',
+      warningReason: 'Document was compiled over a year ago; university verification room assignments and digital countersign workflows may have shifted.',
       affectedInformation: 'Physical dossier verification room number and offline turn-around times.',
       suggestedAction: 'Confirm with University Dean of Student Welfare office before visiting in person.',
       severity: 'low',
@@ -303,39 +313,57 @@ Note: Students who fail to obtain college seal before state portal closure canno
   unansweredQuestions: [
     {
       id: 'q-01',
-      question: 'What is the official application deadline for the 2026–2027 cycle?',
-      whyItMatters: 'Deadlines in state scholarship portals are strict with no grace periods permitted.',
-      relatedInformationFound: 'Expired deadline of Dec 15, 2023 found in Source 1; unconfirmed Nov 30, 2026 claim in Source 2.',
-      relatedSourceTitles: ['Official State Portal (2023)', 'EduFinder Guide (2026)'],
-      suggestedVerificationStep: 'Inspect the live NSP homepage notifications ticker.',
+      question: 'Which authority is permitted to issue the required income certificate?',
+      whyItMatters: 'Reviewed sources state conflicting authority requirements (e.g. Tehsildar vs Sub-Divisional Magistrate vs notarized affidavit).',
+      relatedInformationFound: 'General mention of Revenue Certificate in Gazette notice and notarized declaration in advisory guide.',
+      relatedSourceTitles: ['Official State Scholarship Portal - Gazette Notification No. 441', `EduFinder Complete Guide`],
+      suggestedVerificationStep: 'Verify with the competent state revenue department or scholarship gazette.',
       priority: 'high'
     },
     {
       id: 'q-02',
-      question: 'Are scholarship recipients required to maintain a specific CGPA for yearly renewal?',
-      whyItMatters: 'Losing scholarship funding mid-degree can derail academic progression.',
-      relatedInformationFound: 'No renewal guidelines discovered in any reviewed document.',
-      relatedSourceTitles: ['All 3 Sources Reviewed'],
-      suggestedVerificationStep: 'Download the comprehensive scheme master operational document.',
+      question: 'What is the latest official document checklist?',
+      whyItMatters: 'Reviewed sources provide partial and conflicting documentation requirements.',
+      relatedInformationFound: 'Incomplete references to marks cards, bank passbooks, and affidavits.',
+      relatedSourceTitles: ['Official State Scholarship Portal', `EduFinder Guide`, 'City University Bulletin'],
+      suggestedVerificationStep: 'Download the active cycle document checklist from the official scholarship portal.',
       priority: 'high'
     },
     {
       id: 'q-03',
-      question: 'Is Aadhaar-based Direct Bank Transfer (DBT) mandatory for bank accounts?',
-      whyItMatters: 'Payments bounce if the bank account is not NPCI-mapped with the applicant Aadhaar.',
-      relatedInformationFound: 'Source 1 mentions "bank passbook seeded with Aadhaar" briefly.',
-      relatedSourceTitles: ['Official State Scholarship Portal - Gazette Notification No. 441'],
-      suggestedVerificationStep: 'Run NPCI Aadhaar bank account mapping status check at resident bank branch.',
-      priority: 'medium'
+      question: 'What is the current application deadline?',
+      whyItMatters: 'The current active deadline is unconfirmed in reviewed sources (Source 1 contains an expired prior-cycle date, Source 2 has an unverified date).',
+      relatedInformationFound: `Expired deadline in Source 1; unconfirmed Nov 30 claim in Source 2.`,
+      relatedSourceTitles: ['Official State Scholarship Portal (Prior Cycle)', `EduFinder Guide`],
+      suggestedVerificationStep: 'Check the official portal announcements banner for current cycle dates.',
+      priority: 'high'
+    },
+    {
+      id: 'q-04',
+      question: 'Are late submissions or deadline extensions permitted?',
+      whyItMatters: 'Rules regarding submission extensions, appeals, or technical grace periods were not established in reviewed sources.',
+      relatedInformationFound: 'University handbook warns against missing institutional deadlines; official portal gives no extension terms.',
+      relatedSourceTitles: ['City University Student Financial Aid Bulletin', 'Official State Scholarship Portal'],
+      suggestedVerificationStep: 'Consult the official scheme operating guidelines for extension and appeal policies.',
+      priority: 'high'
+    },
+    {
+      id: 'q-05',
+      question: 'What are the official renewal requirements?',
+      whyItMatters: 'Zero guidelines discovered regarding subsequent academic years, minimum CGPA thresholds, or re-application procedures.',
+      relatedInformationFound: 'No renewal guidelines discovered in any reviewed document.',
+      relatedSourceTitles: ['All 3 Reviewed Sources'],
+      suggestedVerificationStep: 'Request the multi-year continuation guidelines from the university financial aid office.',
+      priority: 'high'
     }
   ],
   checklist: [
     {
       id: 'task-01',
       projectId: 'demo-scholarship-2026',
-      title: 'Verify active 2026 deadline on official NSP portal',
-      reason: 'Current deadline is unestablished; Source 1 shows expired 2023 date and Source 2 has unverified date.',
-      relatedFinding: 'Freshness Warning: Expired 2023 cycle date',
+      title: 'Verify active application deadline on official NSP portal',
+      reason: 'Current deadline is unestablished; Source 1 shows expired prior-cycle date and Source 2 has unverified date. Verification Question: What is the current application deadline?',
+      relatedFinding: 'Freshness Warning: Expired prior cycle date',
       suggestedOfficialSource: 'National Scholarship Portal (scholarships.gov.in) Notifications tab',
       priority: 'high',
       status: 'pending',
@@ -345,7 +373,7 @@ Note: Students who fail to obtain college seal before state portal closure canno
       id: 'task-02',
       projectId: 'demo-scholarship-2026',
       title: 'Confirm whether income ceiling is ₹2,50,000 or ₹3,50,000',
-      reason: 'Conflicting claims between official gazette and advisory guide could invalidate application.',
+      reason: 'Conflicting claims between official gazette and advisory guide require clarification against active gazette.',
       relatedFinding: 'Conflict: Income ceiling discrepancy between Source A & Source B',
       suggestedOfficialSource: 'Latest State Department Gazette or e-District Portal',
       priority: 'high',
@@ -355,8 +383,8 @@ Note: Students who fail to obtain college seal before state portal closure canno
     {
       id: 'task-03',
       projectId: 'demo-scholarship-2026',
-      title: 'Obtain designated Revenue Authority Income Certificate',
-      reason: 'Self-affidavits are forbidden by Source 1; certificate must be within 6 months validity.',
+      title: 'Confirm issuing authority for required income certificate',
+      reason: 'Issuing authority requirements remain unconfirmed. Verification Question: Which authority is permitted to issue the required income certificate?',
       relatedFinding: 'Information Gap: Official Document Checklist',
       suggestedOfficialSource: 'Local Tehsildar / Taluk Office or e-District Seva Kendra',
       priority: 'high',
@@ -365,26 +393,27 @@ Note: Students who fail to obtain college seal before state portal closure canno
     {
       id: 'task-04',
       projectId: 'demo-scholarship-2026',
-      title: 'Confirm college Dean endorsement process and timeline',
-      reason: 'College must counter-sign dossier before deadline; requires 5 business days processing.',
+      title: 'Obtain the latest official document checklist from department',
+      reason: 'Document submission requirements differ across sources. Verification Question: What is the latest official document checklist?',
       relatedFinding: 'Claim 4: Dean office endorsement window',
-      suggestedOfficialSource: 'City University Student Welfare Cell (Room 104)',
+      suggestedOfficialSource: 'City University Student Welfare Cell (Room 104) / Official Gazette',
       priority: 'medium',
       status: 'completed',
-      completedAt: '2026-10-31T10:10:00.000Z',
+      completedAt: fiveMinsAgoIso,
       userNotes: 'Met officer Mrs. Sharma; confirmed Room 104 is operational and takes 3-4 days.'
     },
     {
       id: 'task-05',
       projectId: 'demo-scholarship-2026',
-      title: 'Clarify multi-year renewal GPA criteria with financial aid officer',
-      reason: 'Renewal rules are completely missing from all reviewed sources.',
+      title: 'Clarify multi-year renewal requirements with financial aid officer',
+      reason: 'Renewal rules are completely missing from all reviewed sources. Verification Question: What are the official renewal requirements?',
       relatedFinding: 'Potential Information Gap: Renewal Terms',
       suggestedOfficialSource: 'University Financial Aid Officer / State Scheme Guidelines Clause',
       priority: 'medium',
       status: 'pending'
     }
   ],
+
   coverageMatrix: [
     {
       aspect: 'Eligibility Criteria',

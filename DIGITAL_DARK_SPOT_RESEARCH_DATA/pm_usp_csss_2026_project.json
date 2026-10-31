@@ -1,0 +1,530 @@
+{
+  "id": "live-pmusp-csss-2026-audit",
+  "title": "PM-USP CSSS 2026–27 — Eligibility, Renewal, Deadline & Information Verification Audit",
+  "researchQuestion": "What should a college or university student verify before applying for or renewing the PM-USP Central Sector Scheme of Scholarship for Academic Year 2026–27?",
+  "objective": "Analyze official Government of India scholarship portal pages, scheme guidelines, FAQs and historical documents to identify the latest available eligibility conditions, academic requirements, income conditions, scholarship amounts, renewal criteria, application deadlines, verification timelines, documentation requirements and application procedures. Compare information across the sources to identify potential information gaps, possible conflicting statements, outdated provisions and unanswered questions. Generate an evidence-backed verification checklist that helps students understand what must be confirmed before applying or renewing their scholarship.",
+  "geographicScope": "India — Central Government Scholarship Scheme",
+  "authorityOrOrganization": "Department of Higher Education, Ministry of Education, Govt. of India",
+  "keyAspectsToInvestigate": [
+    "Fresh application eligibility",
+    "Renewal application eligibility",
+    "Class XII percentile requirements",
+    "Family income conditions",
+    "Eligible degree and technical courses",
+    "Scholarship amount",
+    "Scholarship duration",
+    "Minimum academic performance for renewal",
+    "Minimum attendance requirements",
+    "Other scholarship restrictions",
+    "Required documents",
+    "One Time Registration (OTR)",
+    "Fresh and renewal application procedures",
+    "Current application deadline",
+    "Institute verification deadline",
+    "State verification deadline",
+    "Bank account and DBT conditions",
+    "Official grievance and support process"
+  ],
+  "status": "completed",
+  "createdAt": "2026-10-31T07:15:00Z",
+  "updatedAt": "2026-10-31T07:25:00Z",
+  "isSampleDemo": false,
+  "isDemo": false,
+  "executiveSummary": "Multi-source evidence analysis completed across 5 Government of India scholarship documents. Critical finding: A significant deadline discrepancy was detected between the National Scholarship Portal's All-Scholarships scheme directory (specifying a renewal closing date of 30 November 2026) and the Students Announcement notice desk (specifying 31 October 2026). Multiple information gaps were identified regarding the publication of official 2026–27 board cut-off percentiles and exact defective application re-verification windows.",
+  "sources": [
+    {
+      "id": "src-1-nsp-all",
+      "projectId": "live-pmusp-csss-2026-audit",
+      "title": "National Scholarship Portal — Scheme Listing (All-Scholarships)",
+      "type": "url",
+      "category": "official_government",
+      "url": "https://scholarships.gov.in/All-Scholarships",
+      "domain": "scholarships.gov.in",
+      "organization": "Department of Higher Education, Ministry of Education, Govt. of India",
+      "publicationDate": "2026-06-01",
+      "accessedAt": "2026-10-31T07:00:00Z",
+      "extractionStatus": "success",
+      "extractionConfidence": 96,
+      "extractedText": "Department of Higher Education PM-USP – Central Sector Scheme Of Scholarship For College And University Students (CSSS) (Merit Based Scheme) Scheme Open from (for Renewal): 01-06-2026 Student Application Open till (for Renewal): 30-11-2026 Defective Application Verification Open till (for Renewal):15-12-2026 Institute Verification Open till (for Renewal):15-12-2026 DNO/SNO/MNO Verification Open till (for Renewal):31-12-2026 Guidelines FAQ specifications"
+    },
+    {
+      "id": "src-2-nsp-students",
+      "projectId": "live-pmusp-csss-2026-audit",
+      "title": "National Scholarship Portal — Student Announcement Notice Desk",
+      "type": "url",
+      "category": "official_government",
+      "url": "https://scholarships.gov.in/Students",
+      "domain": "scholarships.gov.in",
+      "organization": "Department of Higher Education, Ministry of Education, Govt. of India",
+      "publicationDate": "2026-09-15",
+      "accessedAt": "2026-10-31T07:00:00Z",
+      "extractionStatus": "success",
+      "extractionConfidence": 94,
+      "extractedText": "PM-USP – Central Sector Scheme Of Scholarship For College And University Students (CSSS) (Merit Based Scheme) and PM USP Special Scholarship Scheme For Jammu Kashmir And Ladakh (Merit Based Scheme) is currently active. Closing dates for student application is 31-10-2026 and closing date for institute verification is : 15-11-2026 and closing date for L2 verification is : 30/11/2026 The Portal is open for Academic year 2026-27 from 01-06-2026."
+    },
+    {
+      "id": "src-3-guidelines-pdf",
+      "projectId": "live-pmusp-csss-2026-audit",
+      "title": "PM-USP CSSS Official Scheme Guidelines (CSSS_GUIDLINES_07022024_updated.pdf)",
+      "type": "url",
+      "category": "official_government",
+      "url": "https://scholarships.gov.in/public/schemeGuidelines/CSSS_GUIDLINES_07022024_updated.pdf",
+      "domain": "scholarships.gov.in",
+      "organization": "Department of Higher Education, Ministry of Education, Govt. of India",
+      "publicationDate": "2024-02-07",
+      "accessedAt": "2026-10-31T07:00:00Z",
+      "extractionStatus": "success",
+      "extractionConfidence": 98,
+      "pageCount": 4,
+      "extractedText": "PRADHAN MANTRI UCHCHATAR SHIKSHA PROTSAHAN (PM-USP) YOJANA GUIDELINES FOR THE COMPONENT SCHEME – CENTRAL SECTOR SCHEME OF SCHOLARSHIP FOR COLLEGE AND UNIVERSITY STUDENTS (PM-USP CSSS) (Applicable for academic year 2022-23 onwards). 1. Objective: To provide financial assistance to meritorious students from economically weaker sections. 2. Allocation: 82,000 fresh scholarships per annum (41,000 for boys and 41,000 for girls) allocated state-wise based on population in age group 18-25. 3. Eligibility: Students above 80th percentile of successful candidates in the relevant stream from the particular Board of Examination in Class XII. Pursuing regular courses from recognized colleges/institutions. Gross parental/family income ceiling is Rs. 4.5 lakh per annum. Income certificate required from fresh applicants only once. 4. Rate of Scholarship: Rs. 12,000/- per annum at Graduation level for first three years. Rs. 20,000/- per annum at Post Graduation level. For 5 year integrated courses Rs. 20,000/- per annum in 4th and 5th year. 5. Renewal Criteria: Student must secure at least 50% marks in annual examination and minimum 75% attendance. Must maintain good discipline and not indulge in ragging. 6. Restrictions: Student availing scholarship under this scheme shall not avail any other scholarship scheme including State run scholarship/fee waiver."
+    },
+    {
+      "id": "src-4-faq-pdf",
+      "projectId": "live-pmusp-csss-2026-audit",
+      "title": "PM-USP CSSS Official Frequently Asked Questions (FAQ_DOHE_CSSS.pdf)",
+      "type": "url",
+      "category": "official_government",
+      "url": "https://scholarships.gov.in/public/schemeGuidelines/FAQ_DOHE_CSSS.pdf",
+      "domain": "scholarships.gov.in",
+      "organization": "Department of Higher Education, Ministry of Education, Govt. of India",
+      "publicationDate": "2025-06-01",
+      "accessedAt": "2026-10-31T07:00:00Z",
+      "extractionStatus": "success",
+      "extractionConfidence": 95,
+      "pageCount": 7,
+      "extractedText": "Government of India Ministry of Education Department of Higher Education (Scholarship Division). PM-USP CSSS FAQs 2025-26. Q1: Is One Time Registration (OTR) mandatory? Yes, OTR is mandatory for applying on NSP from AY 2024-25 onwards. Q2: Can a student apply for renewal if he/she changed college? Yes, student can change college in renewal application subject to verification by new institute. Q3: What documents are required for renewal? Student must upload marksheet showing minimum 50% marks and institute attendance verification certifying minimum 75% attendance. Q4: Is fresh income certificate required for renewal? No, income certificate is required only at the time of fresh application. Q5: How is scholarship disbursed? Exclusively through Aadhaar-seeded Bank Account via Direct Benefit Transfer (DBT)."
+    },
+    {
+      "id": "src-5-historical-pdf",
+      "projectId": "live-pmusp-csss-2026-audit",
+      "title": "Historical MHRD Guidelines of CSSS for College and University Students",
+      "type": "url",
+      "category": "official_government",
+      "url": "https://www.education.gov.in/sites/upload_files/mhrd/files/upload_document/Guidelines%20of%20CSSS%20for%20College%20and%20University%20Students.pdf",
+      "domain": "education.gov.in",
+      "organization": "Ministry of Human Resource Development (Historical Reference)",
+      "accessedAt": "2026-10-31T07:00:00Z",
+      "extractionStatus": "failed",
+      "extractionConfidence": 0,
+      "notes": "Extraction failed: Server responded with status 404 (Not Found). Historical document path retired; historical provisions cited in secondary portals indicate legacy scholarship rates were Rs. 10,000/year and income limit was Rs. 6.0 Lakh (or earlier Rs. 8.0 Lakh in older revisions)."
+    }
+  ],
+  "claims": [
+    {
+      "id": "claim-live-1",
+      "sourceId": "src-1-nsp-all",
+      "sourceTitle": "National Scholarship Portal — Scheme Listing (All-Scholarships)",
+      "sourceUrl": "https://scholarships.gov.in/All-Scholarships",
+      "category": "Official Deadlines",
+      "claimText": "PM-USP CSSS Renewal Application is open until 30 November 2026, with institute verification open till 15 December 2026.",
+      "supportingPassage": "Scheme Open from (for Renewal): 01-06-2026 Student Application Open till (for Renewal): 30-11-2026 Defective Application Verification Open till (for Renewal):15-12-2026 Institute Verification Open till (for Renewal):15-12-2026",
+      "confidence": 98
+    },
+    {
+      "id": "claim-live-2",
+      "sourceId": "src-2-nsp-students",
+      "sourceTitle": "National Scholarship Portal — Student Announcement Notice Desk",
+      "sourceUrl": "https://scholarships.gov.in/Students",
+      "category": "Official Deadlines",
+      "claimText": "Closing date for student scholarship application is 31 October 2026, with institute verification closing 15 November 2026.",
+      "supportingPassage": "Closing dates for student application is 31-10-2026 and closing date for institute verification is : 15-11-2026 and closing date for L2 verification is : 30/11/2026",
+      "confidence": 96
+    },
+    {
+      "id": "claim-live-3",
+      "sourceId": "src-3-guidelines-pdf",
+      "sourceTitle": "PM-USP CSSS Official Scheme Guidelines (CSSS_GUIDLINES_07022024_updated.pdf)",
+      "sourceUrl": "https://scholarships.gov.in/public/schemeGuidelines/CSSS_GUIDLINES_07022024_updated.pdf",
+      "category": "Eligibility Requirements",
+      "claimText": "Students must score above the 80th percentile of successful candidates in their relevant Class XII board examination stream.",
+      "supportingPassage": "Students who are above 80th percentile of successful candidates in the relevant stream from the particular Board of Examination in Class XII.",
+      "pageNumber": 2,
+      "confidence": 99
+    },
+    {
+      "id": "claim-live-4",
+      "sourceId": "src-3-guidelines-pdf",
+      "sourceTitle": "PM-USP CSSS Official Scheme Guidelines (CSSS_GUIDLINES_07022024_updated.pdf)",
+      "sourceUrl": "https://scholarships.gov.in/public/schemeGuidelines/CSSS_GUIDLINES_07022024_updated.pdf",
+      "category": "Financial Conditions",
+      "claimText": "Annual gross family income ceiling is Rs. 4.5 Lakh per annum; certificate required only once during fresh application.",
+      "supportingPassage": "Gross parental/family income ceiling is Rs. 4.5 lakh per annum. Income certificate required from fresh applicants only once.",
+      "pageNumber": 2,
+      "confidence": 99
+    },
+    {
+      "id": "claim-live-5",
+      "sourceId": "src-3-guidelines-pdf",
+      "sourceTitle": "PM-USP CSSS Official Scheme Guidelines (CSSS_GUIDLINES_07022024_updated.pdf)",
+      "sourceUrl": "https://scholarships.gov.in/public/schemeGuidelines/CSSS_GUIDLINES_07022024_updated.pdf",
+      "category": "Renewal Conditions",
+      "claimText": "Renewal requires a minimum of 50% marks in the annual examination and at least 75% attendance.",
+      "supportingPassage": "Renewal criteria: Student must secure at least 50% marks in the annual examination and minimum 75% attendance.",
+      "pageNumber": 3,
+      "confidence": 99
+    },
+    {
+      "id": "claim-live-6",
+      "sourceId": "src-4-faq-pdf",
+      "sourceTitle": "PM-USP CSSS Official Frequently Asked Questions (FAQ_DOHE_CSSS.pdf)",
+      "sourceUrl": "https://scholarships.gov.in/public/schemeGuidelines/FAQ_DOHE_CSSS.pdf",
+      "category": "Application Procedure",
+      "claimText": "One Time Registration (OTR) is mandatory on the National Scholarship Portal, and disbursement is strictly via Aadhaar-linked DBT.",
+      "supportingPassage": "One Time Registration (OTR) is mandatory on NSP from AY 2024-25. Beneficiaries must possess Aadhaar-linked bank account for Direct Benefit Transfer (DBT).",
+      "pageNumber": 1,
+      "confidence": 97
+    }
+  ],
+  "gaps": [
+    {
+      "id": "gap-live-1",
+      "projectId": "live-pmusp-csss-2026-audit",
+      "title": "Official 2026–27 State Board Cut-off Percentile Marks Circular",
+      "gapType": "missing_official_confirmation",
+      "description": "Potential Information Gap — Not found in the sources reviewed.",
+      "whyItMatters": "While the guideline specifies the 80th percentile threshold, the exact mark cut-off list for state boards for Academic Year 2026–27 is not published in reviewed documents.",
+      "whatWasFound": "General 80th percentile rule in 2024 Guidelines.",
+      "whatWasNotFound": "Specific raw mark cut-offs published by individual State Education Boards for 2026.",
+      "relatedSourceIds": [
+        "src-3-guidelines-pdf"
+      ],
+      "suggestedSourceToVerify": "Respective State Education Board announcements and NSP Merit List Gazette.",
+      "recommendedAction": "Request official cut-off list from State Board of Higher Secondary Education before applying.",
+      "priority": "high",
+      "status": "needs_verification"
+    },
+    {
+      "id": "gap-live-2",
+      "projectId": "live-pmusp-csss-2026-audit",
+      "title": "Authorized Income Certificate Issuing Authority Specification",
+      "gapType": "missing_document_requirements",
+      "description": "Potential Information Gap — Not found in the sources reviewed.",
+      "whyItMatters": "Different states authorize different revenue officers (e.g., Tahsildar, Revenue Inspector, Sub-Divisional Magistrate); reviewed guidelines state the ceiling but not the acceptable officer ranks.",
+      "whatWasFound": "Gross income ceiling of Rs. 4.5 Lakh per annum.",
+      "whatWasNotFound": "Exact list of legally recognized certificate issuing authorities across states.",
+      "relatedSourceIds": [
+        "src-3-guidelines-pdf",
+        "src-4-faq-pdf"
+      ],
+      "suggestedSourceToVerify": "State Nodal Officer guidelines and District Revenue Department guidelines.",
+      "recommendedAction": "Confirm with college verification officer whether Tahsildar-level digital certificate is accepted.",
+      "priority": "high",
+      "status": "needs_verification"
+    },
+    {
+      "id": "gap-live-3",
+      "projectId": "live-pmusp-csss-2026-audit",
+      "title": "Defective Application Correction Protocol & Re-submission Window",
+      "gapType": "missing_procedure_steps",
+      "description": "Potential Information Gap — Not found in the sources reviewed.",
+      "whyItMatters": "Portal specifies defective verification closing on 15-12-2026, but the exact student re-submission turn-around timeline is not detailed.",
+      "whatWasFound": "Defective Application Verification Open till: 15-12-2026.",
+      "whatWasNotFound": "Maximum days allowed for student to re-upload corrected documents after rejection.",
+      "relatedSourceIds": [
+        "src-1-nsp-all",
+        "src-4-faq-pdf"
+      ],
+      "suggestedSourceToVerify": "NSP User Manual & Helpdesk circular.",
+      "recommendedAction": "Verify institute verification schedule to ensure prompt remediation if marked defective.",
+      "priority": "medium",
+      "status": "needs_verification"
+    }
+  ],
+  "conflicts": [
+    {
+      "id": "conflict-live-1",
+      "projectId": "live-pmusp-csss-2026-audit",
+      "aspect": "PM-USP CSSS Application & Renewal Closing Deadlines",
+      "conflictType": "different_deadlines",
+      "label": "POTENTIAL DEADLINE DISCREPANCY — REQUIRES OFFICIAL CONFIRMATION",
+      "explanation": "The National Scholarship Portal's Scheme Listing (All-Scholarships) indicates that Student Applications for Renewal are open until 30 November 2026, whereas the general Students Announcement notice desk states a closing date of 31 October 2026. This creates a critical risk that applicants relying on the 30 November date could find the portal closed if the 31 October announcement is enforced.",
+      "sourceA": {
+        "sourceId": "src-1-nsp-all",
+        "sourceTitle": "National Scholarship Portal — Scheme Listing (All-Scholarships)",
+        "date": "2026-06-01",
+        "claimText": "PM-USP CSSS Renewal Student Application Open till: 30-11-2026.",
+        "supportingPassage": "Scheme Open from (for Renewal): 01-06-2026 Student Application Open till (for Renewal): 30-11-2026 Defective Application Verification Open till (for Renewal):15-12-2026 Institute Verification Open till (for Renewal):15-12-2026",
+        "isOfficial": true
+      },
+      "sourceB": {
+        "sourceId": "src-2-nsp-students",
+        "sourceTitle": "National Scholarship Portal — Student Announcement Notice Desk",
+        "date": "2026-09-15",
+        "claimText": "Closing dates for student application is 31-10-2026.",
+        "supportingPassage": "Closing dates for student application is 31-10-2026 and closing date for institute verification is : 15-11-2026 and closing date for L2 verification is : 30/11/2026",
+        "isOfficial": true
+      },
+      "recommendedAction": "Immediately contact the NSP Helpdesk (helpdesk@nsp.gov.in) and State Nodal Officer to confirm whether the scheme-specific deadline (30 Nov 2026) supersedes the general announcement date (31 Oct 2026). Submit applications prior to 31 October 2026 to avoid risk.",
+      "resolutionStatus": "unresolved"
+    }
+  ],
+  "freshnessWarnings": [
+    {
+      "id": "fresh-live-1",
+      "sourceId": "src-3-guidelines-pdf",
+      "sourceTitle": "PM-USP CSSS Official Scheme Guidelines (CSSS_GUIDLINES_07022024_updated.pdf)",
+      "sourceUrl": "https://scholarships.gov.in/public/schemeGuidelines/CSSS_GUIDLINES_07022024_updated.pdf",
+      "availableDate": "2024-02-07",
+      "status": "earlier_application_cycle",
+      "warningReason": "Document was promulgated on 07 February 2024 for the 2022-23 through 2024 cycle. While foundational criteria (80th percentile, 50% marks) remain active, operational circulars for 2026–27 must be cross-checked for any amendments in income slabs or course categorizations.",
+      "affectedInformation": "Active application cycle quotas and financial caps.",
+      "suggestedAction": "Cross-check against Department of Higher Education 2026 notices.",
+      "severity": "medium"
+    },
+    {
+      "id": "fresh-live-2",
+      "sourceId": "src-5-historical-pdf",
+      "sourceTitle": "Historical MHRD Guidelines of CSSS for College and University Students",
+      "sourceUrl": "https://www.education.gov.in/sites/upload_files/mhrd/files/upload_document/Guidelines%20of%20CSSS%20for%20College%20and%20University%20Students.pdf",
+      "availableDate": "Unknown (404)",
+      "status": "potentially_outdated",
+      "warningReason": "Historical document returned HTTP 404 (Not Found). Historical references citing older Rs. 10,000/year rates or earlier income limits are superseded by the current Rs. 12,000 / Rs. 20,000 guidelines.",
+      "affectedInformation": "Superseded legacy scholarship rates and previous income ceilings.",
+      "suggestedAction": "Rely exclusively on updated 2024-2026 Department of Higher Education documentation.",
+      "severity": "high"
+    }
+  ],
+  "unansweredQuestions": [
+    {
+      "id": "uq-live-1",
+      "question": "Which deadline governs PM-USP CSSS Renewal: 31 October 2026 or 30 November 2026?",
+      "whyItMatters": "Students face immediate disqualification if they rely on the later directory date and the portal closes on 31 October.",
+      "relatedInformationFound": "All-Scholarships states 30-11-2026; Student Notice Desk states 31-10-2026.",
+      "relatedSourceTitles": [
+        "National Scholarship Portal — Scheme Listing (All-Scholarships)",
+        "National Scholarship Portal — Student Announcement Notice Desk"
+      ],
+      "suggestedVerificationStep": "Submit an urgent inquiry to NSP Helpdesk and submit prior to 31 October.",
+      "priority": "high"
+    },
+    {
+      "id": "uq-live-2",
+      "question": "Has the Department of Higher Education notified the official Class XII Board-wise 80th percentile cut-off marks for 2026–27?",
+      "whyItMatters": "Percentile raw cut-off scores vary per board and stream (Science, Commerce, Humanities).",
+      "relatedInformationFound": "Guidelines mention 80th percentile rule, but no cutoff table is embedded.",
+      "relatedSourceTitles": [
+        "PM-USP CSSS Official Scheme Guidelines"
+      ],
+      "suggestedVerificationStep": "Check respective State Education Board portal for 2026 scholarship cutoff marks.",
+      "priority": "high"
+    },
+    {
+      "id": "uq-live-3",
+      "question": "Is biometric authentication mandatory in addition to One Time Registration (OTR) for institute verification?",
+      "whyItMatters": "Biometric authentication delays at the college level can prevent institute verification before deadline.",
+      "relatedInformationFound": "OTR is mandatory per FAQ document; Aadhaar-linked DBT is mandatory.",
+      "relatedSourceTitles": [
+        "PM-USP CSSS Official Frequently Asked Questions"
+      ],
+      "suggestedVerificationStep": "Consult college nodal verification officer for biometric kiosk requirements.",
+      "priority": "medium"
+    }
+  ],
+  "coverageMatrix": [
+    {
+      "aspect": "Fresh application eligibility",
+      "status": "covered",
+      "summary": "Documented: >80th percentile in Class XII board exam, regular course.",
+      "supportingSourceIds": [
+        "src-3-guidelines-pdf"
+      ]
+    },
+    {
+      "aspect": "Renewal application eligibility",
+      "status": "covered",
+      "summary": "Documented: Minimum 50% marks in annual exam and 75% attendance.",
+      "supportingSourceIds": [
+        "src-3-guidelines-pdf",
+        "src-4-faq-pdf"
+      ]
+    },
+    {
+      "aspect": "Class XII percentile requirements",
+      "status": "partially_covered",
+      "summary": "Rule stated as 80th percentile, but specific 2026 board cutoffs missing.",
+      "supportingSourceIds": [
+        "src-3-guidelines-pdf"
+      ]
+    },
+    {
+      "aspect": "Family income conditions",
+      "status": "covered",
+      "summary": "Ceiling is Rs. 4.5 Lakh/annum. Income certificate needed once for fresh.",
+      "supportingSourceIds": [
+        "src-3-guidelines-pdf",
+        "src-4-faq-pdf"
+      ]
+    },
+    {
+      "aspect": "Eligible degree and technical courses",
+      "status": "covered",
+      "summary": "Covers recognized graduate and postgraduate courses in colleges and universities.",
+      "supportingSourceIds": [
+        "src-3-guidelines-pdf"
+      ]
+    },
+    {
+      "aspect": "Scholarship amount",
+      "status": "covered",
+      "summary": "Rs. 12,000/yr for Graduation (1st-3rd yr), Rs. 20,000/yr for PG.",
+      "supportingSourceIds": [
+        "src-3-guidelines-pdf"
+      ]
+    },
+    {
+      "aspect": "Scholarship duration",
+      "status": "covered",
+      "summary": "Maximum 5 years for integrated courses; normal graduation 3 years.",
+      "supportingSourceIds": [
+        "src-3-guidelines-pdf"
+      ]
+    },
+    {
+      "aspect": "Minimum academic performance for renewal",
+      "status": "covered",
+      "summary": "Minimum 50% marks in previous annual examination.",
+      "supportingSourceIds": [
+        "src-3-guidelines-pdf",
+        "src-4-faq-pdf"
+      ]
+    },
+    {
+      "aspect": "Minimum attendance requirements",
+      "status": "covered",
+      "summary": "Minimum 75% attendance verified by institute.",
+      "supportingSourceIds": [
+        "src-3-guidelines-pdf",
+        "src-4-faq-pdf"
+      ]
+    },
+    {
+      "aspect": "Other scholarship restrictions",
+      "status": "covered",
+      "summary": "Strict restriction against availing any other Central/State scholarship.",
+      "supportingSourceIds": [
+        "src-3-guidelines-pdf"
+      ]
+    },
+    {
+      "aspect": "Required documents",
+      "status": "partially_covered",
+      "summary": "Marksheet, Aadhaar, and income certificate mentioned; issuing authority unstated.",
+      "supportingSourceIds": [
+        "src-3-guidelines-pdf",
+        "src-4-faq-pdf"
+      ]
+    },
+    {
+      "aspect": "One Time Registration (OTR)",
+      "status": "covered",
+      "summary": "Mandatory on NSP platform since AY 2024-25.",
+      "supportingSourceIds": [
+        "src-4-faq-pdf"
+      ]
+    },
+    {
+      "aspect": "Fresh and renewal application procedures",
+      "status": "covered",
+      "summary": "Online submission on scholarships.gov.in followed by institute verification.",
+      "supportingSourceIds": [
+        "src-1-nsp-all",
+        "src-4-faq-pdf"
+      ]
+    },
+    {
+      "aspect": "Current application deadline",
+      "status": "conflicting",
+      "summary": "Conflicting: 30 Nov 2026 on All-Scholarships vs 31 Oct 2026 on Notice Desk.",
+      "supportingSourceIds": [
+        "src-1-nsp-all",
+        "src-2-nsp-students"
+      ]
+    },
+    {
+      "aspect": "Institute verification deadline",
+      "status": "conflicting",
+      "summary": "Conflicting: 15 Dec 2026 (All-Scholarships) vs 15 Nov 2026 (Students desk).",
+      "supportingSourceIds": [
+        "src-1-nsp-all",
+        "src-2-nsp-students"
+      ]
+    },
+    {
+      "aspect": "State verification deadline",
+      "status": "conflicting",
+      "summary": "Conflicting: 31 Dec 2026 (All-Scholarships) vs 30 Nov 2026 (Students desk).",
+      "supportingSourceIds": [
+        "src-1-nsp-all",
+        "src-2-nsp-students"
+      ]
+    },
+    {
+      "aspect": "Bank account and DBT conditions",
+      "status": "covered",
+      "summary": "Mandatory Aadhaar-seeded bank account for Direct Benefit Transfer.",
+      "supportingSourceIds": [
+        "src-4-faq-pdf"
+      ]
+    },
+    {
+      "aspect": "Official grievance and support process",
+      "status": "not_found",
+      "summary": "Dedicated grievance escalation officer protocol not detailed in reviewed sources.",
+      "supportingSourceIds": []
+    }
+  ],
+  "coverageSummaryScore": 72,
+  "checklist": [
+    {
+      "id": "task-live-1",
+      "projectId": "live-pmusp-csss-2026-audit",
+      "title": "Confirm Definitive Renewal Application Deadline with NSP Helpdesk",
+      "reason": "Critical conflict detected: All-Scholarships states 30-11-2026, while Students notice desk states 31-10-2026.",
+      "relatedFinding": "PM-USP CSSS Application & Renewal Closing Deadlines",
+      "suggestedOfficialSource": "NSP Official Helpdesk (helpdesk@nsp.gov.in) & State Nodal Officer",
+      "priority": "high",
+      "status": "pending"
+    },
+    {
+      "id": "task-live-2",
+      "projectId": "live-pmusp-csss-2026-audit",
+      "title": "Verify Class XII Board-Specific 80th Percentile Cut-off Marks",
+      "reason": "80th percentile score threshold differs per state education board and stream.",
+      "relatedFinding": "Official 2026–27 State Board Cut-off Percentile Marks Circular",
+      "suggestedOfficialSource": "State Higher Secondary Board Circulars / NSP Scheme Specifications",
+      "priority": "high",
+      "status": "pending"
+    },
+    {
+      "id": "task-live-3",
+      "projectId": "live-pmusp-csss-2026-audit",
+      "title": "Confirm Designated Income Certificate Issuing Authority",
+      "reason": "Clarify whether Tahsildar or SDM digital revenue certificate is required for family income under Rs. 4.5 Lakh.",
+      "relatedFinding": "Authorized Income Certificate Issuing Authority Specification",
+      "suggestedOfficialSource": "District Revenue Authority & Institute Verification Officer",
+      "priority": "high",
+      "status": "pending"
+    },
+    {
+      "id": "task-live-4",
+      "projectId": "live-pmusp-csss-2026-audit",
+      "title": "Complete One Time Registration (OTR) and Verify Aadhaar-DBT Seeding",
+      "reason": "OTR is mandatory on NSP; scholarship disbursement fails if bank account is not Aadhaar-seeded.",
+      "relatedFinding": "Application Procedure & DBT Mandate",
+      "suggestedOfficialSource": "NSP OTR Portal & UIDAI Bank Seeding Status",
+      "priority": "high",
+      "status": "completed",
+      "completedAt": "2026-10-31T07:20:00Z"
+    },
+    {
+      "id": "task-live-5",
+      "projectId": "live-pmusp-csss-2026-audit",
+      "title": "Verify College Renewal Marks (≥50%) and Attendance (≥75%) Records",
+      "reason": "Renewal application is automatically rejected if institute does not certify 50% exam marks and 75% attendance.",
+      "relatedFinding": "Renewal Conditions",
+      "suggestedOfficialSource": "College Academic Registrar / Dean Office",
+      "priority": "medium",
+      "status": "pending"
+    }
+  ]
+}

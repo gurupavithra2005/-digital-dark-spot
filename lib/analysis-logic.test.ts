@@ -8,7 +8,8 @@ import {
   detectDateFreshnessWarning,
   evaluateAspectCoverage,
   generateVerificationChecklistFromFindings,
-  generateVersionChangesSummary
+  generateVersionChangesSummary,
+  calculateFindingsBreakdown
 } from './analysis-logic';
 import { ResearchAspectCoverage, VerificationTask, InformationGap, ConflictingClaim, AnalysisVersion } from '@/types/research';
 
@@ -97,3 +98,28 @@ test('generateVersionChangesSummary detects diffs between analysis versions', ()
   assert.ok(changes.some(c => c.includes('2 previously identified gaps are now covered')));
   assert.ok(changes.some(c => c.includes('coverage score changed from 50% to 70%')));
 });
+
+test('calculateFindingsBreakdown accurately calculates total, open, and resolved findings', () => {
+  const sample = {
+    gaps: [
+      { reviewStatus: 'needs_review' },
+      { reviewStatus: 'confirmed' },
+      { reviewStatus: 'needs_review' }
+    ],
+    conflicts: [
+      { reviewStatus: 'needs_review', resolutionStatus: 'unresolved' },
+      { reviewStatus: 'needs_review', resolutionStatus: 'unresolved' }
+    ],
+    freshnessWarnings: [
+      { reviewStatus: 'confirmed' },
+      { reviewStatus: 'needs_review' }
+    ]
+  };
+
+  const breakdown = calculateFindingsBreakdown(sample);
+  assert.equal(breakdown.total, 7);
+  assert.equal(breakdown.openCount, 5);
+  assert.equal(breakdown.resolvedCount, 2);
+  assert.equal(breakdown.breakdownText, '7 Total Demo Findings — 5 Open, 2 Resolved/Other');
+});
+

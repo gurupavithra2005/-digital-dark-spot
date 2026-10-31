@@ -19,11 +19,13 @@ import {
   AlertCircle
 } from 'lucide-react';
 import { ResearchProject, ActivityItem } from '@/types/research';
-import { getActivities } from '@/lib/storage';
+import { getActivities, INITIAL_ACTIVITIES } from '@/lib/storage';
+import { calculateFindingsBreakdown } from '@/lib/analysis-logic';
+import { formatDisplayDate, formatDisplayTime } from '@/lib/utils';
 
 interface DashboardViewProps {
   projects: ResearchProject[];
-  onOpenProject: (projectId: string, tab?: string) => void;
+  onOpenProject: (projectId: string, tab?: string, findingId?: string) => void;
   onNewResearch: () => void;
   onViewAllProjects: () => void;
   onLoadDemo: () => void;
@@ -50,19 +52,18 @@ export function DashboardView({
   const realSourcesCount = realProjects.reduce((acc, p) => acc + (p.sources?.length || 0), 0);
   const demoSourcesCount = demoProjects.reduce((acc, p) => acc + (p.sources?.length || 0), 0);
 
-  // 3. Open Findings (Gaps + Conflicts + Freshness Warnings not dismissed)
+  // 3. Open Findings (Gaps + Conflicts + Freshness Warnings calculated via application data)
   const realOpenFindingsCount = realProjects.reduce((acc, p) => {
-    const gaps = (p.gaps || []).filter((g) => g.reviewStatus !== 'dismissed').length;
-    const conflicts = (p.conflicts || []).filter((c) => c.reviewStatus !== 'dismissed').length;
-    const warnings = (p.freshnessWarnings || []).filter((w) => w.reviewStatus !== 'dismissed').length;
-    return acc + gaps + conflicts + warnings;
+    return acc + calculateFindingsBreakdown(p).openCount;
   }, 0);
-  const demoOpenFindingsCount = demoProjects.reduce((acc, p) => {
-    const gaps = (p.gaps || []).filter((g) => g.reviewStatus !== 'dismissed').length;
-    const conflicts = (p.conflicts || []).filter((c) => c.reviewStatus !== 'dismissed').length;
-    const warnings = (p.freshnessWarnings || []).filter((w) => w.reviewStatus !== 'dismissed').length;
-    return acc + gaps + conflicts + warnings;
+
+  const demoTotalFindings = demoProjects.reduce((acc, p) => {
+    return acc + calculateFindingsBreakdown(p).total;
   }, 0);
+  const demoOpenFindings = demoProjects.reduce((acc, p) => {
+    return acc + calculateFindingsBreakdown(p).openCount;
+  }, 0);
+  const demoResolvedFindings = demoTotalFindings - demoOpenFindings;
 
   // 4. Pending Verification Tasks
   const realPendingTasksCount = realProjects.reduce((acc, p) => {
@@ -75,21 +76,28 @@ export function DashboardView({
   // Latest projects to display
   const recentProjects = projects.slice(0, 4);
 
-  // Activity Feed (Synchronized via useSyncExternalStore for hydration-safe external storage)
+  // Activity Feed (Synchronized via useSyncExternalStore with matching server snapshot)
+  const initialActivitiesJson = React.useMemo(() => JSON.stringify(INITIAL_ACTIVITIES), []);
   const activitiesJson = React.useSyncExternalStore(
     (cb) => {
       if (typeof window === 'undefined') return () => {};
       window.addEventListener('storage', cb);
       return () => window.removeEventListener('storage', cb);
     },
-    () => (typeof window !== 'undefined' ? JSON.stringify(getActivities()) : '[]'),
-    () => '[]'
+    () => {
+      try {
+        return JSON.stringify(getActivities());
+      } catch {
+        return initialActivitiesJson;
+      }
+    },
+    () => initialActivitiesJson
   );
   const activities = React.useMemo<ActivityItem[]>(() => {
     try {
       return JSON.parse(activitiesJson);
     } catch {
-      return [];
+      return INITIAL_ACTIVITIES;
     }
   }, [activitiesJson]);
 
@@ -236,7 +244,9 @@ export function DashboardView({
               {realOpenFindingsCount}
             </div>
             <div className="text-[11px] text-slate-400">
-              {demoOpenFindingsCount} Demo Findings (Excluded)
+              {demoProjectsCount > 0
+                ? `${demoTotalFindings} Total Demo Findings — ${demoOpenFindings} Open, ${demoResolvedFindings} Resolved/Other`
+                : '0 Demo Findings'}
             </div>
           </div>
 
@@ -276,7 +286,7 @@ export function DashboardView({
 
           <div className="space-y-3">
             {recentProjects.map((p) => {
-              const findingsCount = (p.gaps?.length || 0) + (p.conflicts?.length || 0);
+              const { total: pTotalFindings, openCount: pOpenFindings, resolvedCount: pResolvedFindings } = calculateFindingsBreakdown(p);
               const isDemo = p.isSampleDemo || p.isDemo;
               return (
                 <div
@@ -298,7 +308,7 @@ export function DashboardView({
                       </span>
                       <span className="text-[11px] text-slate-400 flex items-center gap-1">
                         <Calendar className="h-3 w-3" />
-                        <span>{new Date(p.updatedAt).toLocaleDateString()}</span>
+                        <span>{formatDisplayDate(p.updatedAt)}</span>
                       </span>
                     </div>
 
@@ -319,7 +329,9 @@ export function DashboardView({
                   <div className="flex items-center gap-4 shrink-0">
                     <div className="text-right text-xs">
                       <div className="text-slate-300 font-semibold">{p.sources?.length || 0} Sources</div>
-                      <div className="text-amber-400 text-[11px]">{findingsCount} Open Findings</div>
+                      <div className="text-amber-400 text-[11px]">
+                        {pOpenFindings} Open Finding{pOpenFindings === 1 ? '' : 's'}{pResolvedFindings > 0 ? ` (${pResolvedFindings} Resolved)` : ''}
+                      </div>
                     </div>
 
                     <button
@@ -364,7 +376,7 @@ export function DashboardView({
             {topAlerts.map((alert) => (
               <div
                 key={alert.id}
-                onClick={() => onOpenProject(alert.projectId, alert.targetTab)}
+                onClick={() => onOpenProject(alert.projectId, alert.targetTab, alert.id)}
                 className="rounded-xl border border-slate-800 bg-[#0e1422] p-4 hover:border-slate-700 cursor-pointer transition-all shadow-sm space-y-2"
               >
                 <div className="flex items-center justify-between text-xs">
@@ -377,10 +389,16 @@ export function DashboardView({
                   }`}>
                     {alert.priority}
                   </span>
-                  <span className="text-[10px] text-blue-400 flex items-center gap-0.5 hover:underline">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onOpenProject(alert.projectId, alert.targetTab, alert.id);
+                    }}
+                    className="text-[10px] text-blue-400 flex items-center gap-0.5 hover:underline font-semibold"
+                  >
                     <span>Inspect</span>
                     <ChevronRight className="h-3 w-3" />
-                  </span>
+                  </button>
                 </div>
 
                 <h4 className="text-xs font-bold text-slate-100 line-clamp-1">
@@ -425,7 +443,7 @@ export function DashboardView({
             >
               <div className="flex items-center justify-between text-[10px] text-slate-400">
                 <span className="font-semibold text-blue-400 capitalize">{act.type.replace('_', ' ')}</span>
-                <span>{new Date(act.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+                <span suppressHydrationWarning>{formatDisplayTime(act.timestamp)}</span>
               </div>
               <div className="font-bold text-slate-200 truncate">{act.title}</div>
               <p className="text-[11px] text-slate-400 line-clamp-2">{act.description}</p>

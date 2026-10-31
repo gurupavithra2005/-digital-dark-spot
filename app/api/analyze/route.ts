@@ -193,7 +193,7 @@ Return a valid, parseable JSON object matching this schema EXACTLY without markd
 }`;
 
         const response = await ai.models.generateContent({
-          model: 'gemini-3.8-flash',
+          model: 'gemini-3.5-flash',
           contents: prompt,
           config: {
             responseMimeType: 'application/json',

@@ -68,9 +68,60 @@ export async function POST(req: NextRequest) {
 
     if (!res.ok) {
       return NextResponse.json(
-        { error: `Unable to access URL. Server responded with status ${res.status} (${res.statusText}).` },
+        { 
+          error: `Unable to access URL. Server responded with status ${res.status} (${res.statusText}).`,
+          failedUrl: parsedUrl.toString(),
+          statusCode: res.status
+        },
         { status: 502 }
       );
+    }
+
+    const contentType = res.headers.get('content-type') || '';
+    const isPdf = contentType.includes('application/pdf') || parsedUrl.pathname.toLowerCase().endsWith('.pdf');
+
+    if (isPdf) {
+      try {
+        const { execFile } = await import('child_process');
+        const path = await import('path');
+        const scriptPath = path.join(process.cwd(), 'lib', 'extract-pdf-helper.js');
+
+        const pdfData: any = await new Promise((resolve, reject) => {
+          execFile('node', [scriptPath, parsedUrl.toString()], { maxBuffer: 10 * 1024 * 1024 }, (err, stdout, stderr) => {
+            if (err) {
+              try {
+                const parsedErr = JSON.parse(stderr);
+                return reject(new Error(parsedErr.error || err.message));
+              } catch {
+                return reject(new Error(stderr || err.message));
+              }
+            }
+            try {
+              const resJson = JSON.parse(stdout);
+              resolve(resJson.data);
+            } catch (jsonErr: any) {
+              reject(new Error(`Failed to parse PDF extractor output: ${jsonErr.message}`));
+            }
+          });
+        });
+
+        const category = classifySourceCategory(pdfData.domain, pdfData.organization);
+        const freshness = detectDateFreshnessWarning(pdfData.publicationDate);
+
+        return NextResponse.json({
+          success: true,
+          data: {
+            ...pdfData,
+            category,
+            freshnessWarning: freshness,
+          },
+        });
+      } catch (pdfErr: any) {
+        return NextResponse.json(
+          { error: `PDF extraction error: ${pdfErr.message || 'Unable to process PDF'}` },
+          { status: 422 }
+        );
+      }
     }
 
     const html = await res.text();

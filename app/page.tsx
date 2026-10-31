@@ -18,6 +18,7 @@ import {
   resetToDemo 
 } from '@/lib/storage';
 import { ResearchProject } from '@/types/research';
+import { SAMPLE_SCHOLARSHIP_PROJECT } from '@/lib/sample-data';
 
 export default function Home() {
   const [projects, setProjects] = useState<ResearchProject[]>(() => {
@@ -31,6 +32,7 @@ export default function Home() {
     return stored || 'demo-scholarship-2026';
   });
   const [workspaceInitialTab, setWorkspaceInitialTab] = useState<string>('overview');
+  const [workspaceInitialFindingId, setWorkspaceInitialFindingId] = useState<string | undefined>(undefined);
 
   const activeProject = projects.find((p) => p.id === activeProjectId) || projects[0] || null;
 
@@ -40,11 +42,12 @@ export default function Home() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Open existing project (with optional target tab from alerts)
-  const handleOpenProject = (id: string, tab: string = 'overview') => {
+  // Open existing project (with optional target tab and findingId from alerts)
+  const handleOpenProject = (id: string, tab: string = 'overview', findingId?: string) => {
     setActiveId(id);
     setActiveProjectId(id);
     setWorkspaceInitialTab(tab);
+    setWorkspaceInitialFindingId(findingId);
     setActiveView('workspace');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -56,6 +59,7 @@ export default function Home() {
     setActiveId(demo.id);
     setActiveProjectId(demo.id);
     setWorkspaceInitialTab('overview');
+    setWorkspaceInitialFindingId(undefined);
     setActiveView('workspace');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -141,9 +145,10 @@ export default function Home() {
 
       {activeView === 'workspace' && activeProject && (
         <ProjectWorkspace
-          key={`${activeProject.id}-${workspaceInitialTab}`}
+          key={`${activeProject.id}-${workspaceInitialTab}-${workspaceInitialFindingId || ''}`}
           project={activeProject}
           initialTab={workspaceInitialTab}
+          initialFindingId={workspaceInitialFindingId}
           onUpdateProject={handleUpdateProject}
           onBackToDashboard={() => handleNavigate('dashboard')}
         />

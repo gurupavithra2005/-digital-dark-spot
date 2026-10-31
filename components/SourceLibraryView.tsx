@@ -14,6 +14,7 @@ import {
   ChevronUp 
 } from 'lucide-react';
 import { ResearchProject, Source } from '@/types/research';
+import { formatDisplayDate } from '@/lib/utils';
 
 interface SourceLibraryViewProps {
   projects: ResearchProject[];
@@ -147,7 +148,7 @@ export function SourceLibraryView({ projects, onOpenProject }: SourceLibraryView
                 )}
                 <div className="flex items-center gap-1">
                   <Calendar className="h-3.5 w-3.5 text-slate-500" />
-                  <span>Published: {source.publicationDate || 'Undated'}</span>
+                  <span>Published: {formatDisplayDate(source.publicationDate)}</span>
                 </div>
                 <div className="flex items-center gap-1 text-emerald-400">
                   <ShieldCheck className="h-3.5 w-3.5" />

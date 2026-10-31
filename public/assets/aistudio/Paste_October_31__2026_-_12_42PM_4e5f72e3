@@ -1,0 +1,1073 @@
+DIGITAL DARK SPOT
+
+MASTER PROMPT — REAL-WORLD RESEARCH EXECUTION, FULL FEATURE SCREENSHOTS & TECHNICAL DOCUMENTATION
+
+Project: SHINCHAN ONLINE HACKATHON 2026
+
+Act as a senior QA engineer, AI research analyst, full-stack developer, product documentation specialist, and technical presentation designer.
+
+You are working on the existing DIGITAL DARK SPOT application.
+
+Live Application:
+https://digital-dark-spot-02.ai.studio/
+
+Your task is to perform a REAL end-to-end research test using an actual Government of India website through the application's existing New Research workflow.
+
+After completing the research, capture actual screenshots of every available feature, explain how each feature works, document the actual AI-generated results, and generate a professional PDF report.
+
+This report will later be used to understand the technical implementation and create the final hackathon PowerPoint presentation.
+
+IMPORTANT:
+
+This is not a request to create a theoretical report.
+
+You must actually execute the research workflow through the existing application, inspect the saved results, navigate through the features, and capture screenshots of the real interface and real outputs.
+
+Do not simply create a sample report with invented screenshots.
+
+==================================================
+PART 1 — PROJECT PRESERVATION
+
+First inspect the complete existing application.
+
+Preserve:
+
+- Existing landing page.
+- Existing dashboard.
+- New Research.
+- My Research.
+- Source Library.
+- Research Workspace.
+- Information Gap Detection.
+- Conflict Detection.
+- Outdated Information Detection.
+- Research Coverage Matrix.
+- Extracted Claims.
+- Verification Checklist.
+- Evidence and Provenance Panel.
+- Research Assistant.
+- Finding Review System, if implemented.
+- Analysis Version History, if implemented.
+- PDF Export.
+- CSV Export.
+- Existing database.
+- Existing AI integrations.
+
+Do not rebuild or delete anything.
+
+Create one separate research project for this test.
+
+Project label:
+
+LIVE SOURCE TEST — NOT ILLUSTRATIVE DEMO DATA.
+
+Keep it separate from existing demo data and real user projects.
+
+Do not delete any existing projects.
+
+==================================================
+PART 2 — REAL RESEARCH SOURCE
+
+Use the following actual public government URLs.
+
+MAIN SOURCE — MANDATORY:
+
+https://scholarships.gov.in/All-Scholarships
+
+This is the official National Scholarship Portal scheme listing.
+
+SECONDARY SOURCE:
+
+https://scholarships.gov.in/Students
+
+OFFICIAL SCHEME GUIDELINES:
+
+https://scholarships.gov.in/public/schemeGuidelines/CSSS_GUIDLINES_07022024_updated.pdf
+
+OFFICIAL SCHEME FAQ:
+
+https://scholarships.gov.in/public/schemeGuidelines/FAQ_DOHE_CSSS.pdf
+
+HISTORICAL REFERENCE:
+
+https://www.education.gov.in/sites/upload_files/mhrd/files/upload_document/Guidelines%20of%20CSSS%20for%20College%20and%20University%20Students.pdf
+
+Use these URLs as genuine source material.
+
+Do not replace these URLs with fictional URLs.
+
+Attempt to collect the content using the application's existing URL source-import feature.
+
+For PDF documents:
+
+- Extract the actual PDF text.
+- Preserve available document metadata.
+- Preserve page numbers.
+- Preserve evidence passages.
+
+For websites:
+
+- Extract accessible page content.
+- Preserve the original URL.
+- Record available page dates and source information.
+
+If any URL cannot be accessed:
+
+- Mark it as Extraction Failed.
+- Explain the reason when available.
+- Do not pretend it was successfully analyzed.
+- Continue with successfully extracted sources.
+
+Never use login credentials or access restricted student accounts.
+
+==================================================
+PART 3 — CREATE THE NEW RESEARCH PROJECT
+
+Navigate to:
+
+New Research.
+
+Fill in the following values.
+
+RESEARCH TITLE:
+
+PM-USP CSSS 2026–27 — Eligibility, Renewal, Deadline & Information Verification Audit
+
+RESEARCH TOPIC:
+
+Pradhan Mantri Uchchatar Shiksha Protsahan (PM-USP) Central Sector Scheme of Scholarship for College and University Students.
+
+RESEARCH QUESTION:
+
+"What should a college or university student verify before applying for or renewing the PM-USP Central Sector Scheme of Scholarship for Academic Year 2026–27?"
+
+RESEARCH OBJECTIVE:
+
+"Analyze official Government of India scholarship portal pages, scheme guidelines, FAQs and historical documents to identify the latest available eligibility conditions, academic requirements, income conditions, scholarship amounts, renewal criteria, application deadlines, verification timelines, documentation requirements and application procedures.
+
+Compare information across the sources to identify potential information gaps, possible conflicting statements, outdated provisions and unanswered questions.
+
+Generate an evidence-backed verification checklist that helps students understand what must be confirmed before applying or renewing their scholarship."
+
+GEOGRAPHIC SCOPE:
+
+India — Central Government Scholarship Scheme.
+
+ACADEMIC YEAR:
+
+2026–27.
+
+RESEARCH CRITERIA:
+
+1. Fresh application eligibility.
+2. Renewal application eligibility.
+3. Class XII percentile requirements.
+4. Family income conditions.
+5. Eligible degree and technical courses.
+6. Scholarship amount.
+7. Scholarship duration.
+8. Minimum academic performance for renewal.
+9. Minimum attendance requirements.
+10. Other scholarship restrictions.
+11. Required documents.
+12. One Time Registration (OTR).
+13. Fresh and renewal application procedures.
+14. Current application deadline.
+15. Institute verification deadline.
+16. State verification deadline.
+17. Bank account and DBT conditions.
+18. Official grievance and support process.
+
+Add all five sources through the application's source collection interface.
+
+Select the relevant source files and websites for analysis.
+
+Review the sources before starting the actual analysis.
+
+Capture a screenshot of this completed New Research form.
+
+Screenshot ID:
+
+DS-01 — NEW RESEARCH CONFIGURATION.
+
+==================================================
+PART 4 — EXECUTE THE ACTUAL ANALYSIS
+
+Press the actual:
+
+"Analyze Information Gaps" button.
+
+Use the application's existing backend, source extraction, and AI processing pipeline.
+
+Do not generate hardcoded results.
+
+Wait for the actual processing workflow.
+
+Observe and record the actual status of:
+
+1. Source Collection.
+2. Content Extraction.
+3. Claim Extraction.
+4. Evidence Mapping.
+5. Cross-Source Comparison.
+6. Information Gap Detection.
+7. Freshness Analysis.
+8. Verification Checklist Generation.
+
+Record:
+
+- Successfully reviewed sources.
+- Failed sources.
+- Extracted claims.
+- Actual evidence references.
+- AI-generated potential gaps.
+- Possible conflicts.
+- Outdated warnings.
+- Unanswered questions.
+- Verification tasks.
+
+If an integration is unavailable, record that limitation honestly.
+
+Do not create artificial successful processing messages.
+
+Capture the complete analysis progress and result.
+
+Screenshot ID:
+
+DS-02 — RESEARCH EXECUTION.
+
+==================================================
+PART 5 — VALIDATE THE ACTUAL INFORMATION FINDINGS
+
+Use the real source content to identify important research findings.
+
+Pay special attention to these verification targets.
+
+A. DEADLINE COMPARISON
+
+The National Scholarship Portal's All Scholarships page and Students page contain different published renewal deadline information.
+
+The All Scholarships listing includes a PM-USP CSSS renewal application deadline of 30 November 2026.
+
+The Students announcement contains a 31 October 2026 closing date for renewal applications.
+
+Compare the exact passages and source references.
+
+Do not automatically decide that one source is correct.
+
+Check:
+
+- Scheme name.
+- Academic year.
+- Fresh or renewal status.
+- Publication or update information.
+- Whether the announcement may be older or broader than the scheme-specific entry.
+
+If both statements are successfully extracted and relate to the same application scope, identify a:
+
+"POTENTIAL DEADLINE DISCREPANCY — REQUIRES OFFICIAL CONFIRMATION."
+
+Show both original evidence passages.
+
+This is an important real-world demonstration of the conflict detection feature.
+
+B. ELIGIBILITY AND RENEWAL ANALYSIS
+
+Compare the current available official documents for:
+
+- 80th percentile requirement.
+- Family income eligibility.
+- Eligible courses.
+- Other scholarship restrictions.
+- 50% minimum marks.
+- 75% attendance.
+- Fresh versus renewal eligibility.
+
+Distinguish fresh application rules from renewal requirements.
+
+C. SCHOLARSHIP AMOUNT COMPARISON
+
+Compare the historical 2018 document with later official guidelines.
+
+Check whether historical scholarship amount information is still applicable.
+
+Do not label an old provision as current simply because it appears in a government document.
+
+D. APPLICATION AND DOCUMENTATION GAPS
+
+Identify which specific current 2026–27 details are available and which are not adequately documented in the successfully reviewed sources.
+
+Examples to investigate:
+
+- Current academic-year-specific document checklist.
+- Exact renewal documentation.
+- Fresh versus renewal document differences.
+- Updated application instructions.
+- Official current cut-off notification.
+
+These are investigation targets, not predetermined findings.
+
+Only mark something as a potential gap when the reviewed source content supports that conclusion.
+
+==================================================
+PART 6 — CAPTURE EVERY AVAILABLE APPLICATION FEATURE
+
+After completing analysis, navigate through the actual saved research workspace.
+
+Capture at least one genuine screenshot for every available feature.
+
+Screenshots must come from the actual running application.
+
+Do not generate illustrated mockups or manually fabricate UI screenshots.
+
+Use a consistent desktop viewport such as 1440 × 900.
+
+Capture mobile screenshots at approximately 390 × 844 for important responsive screens.
+
+Create the following screenshot evidence collection.
+
+SCREENSHOT DS-03 — LANDING PAGE
+
+Show:
+
+- DIGITAL DARK SPOT branding.
+- Main headline.
+- Main call-to-action.
+- Research workflow.
+- Main product features.
+
+Explain:
+What is Digital Dark Spot?
+What problem does it solve?
+How does the six-stage workflow operate?
+
+SCREENSHOT DS-04 — OVERVIEW DASHBOARD
+
+Show:
+
+- Real research statistics.
+- Demo statistics separately.
+- Recent research.
+- Priority alerts.
+- Recent activities.
+
+Explain:
+What does the dashboard monitor?
+How are research statistics calculated?
+
+SCREENSHOT DS-05 — NEW RESEARCH
+
+Show:
+
+- Research title.
+- Research question.
+- Objective.
+- Academic year.
+- Research criteria.
+- Source submission interface.
+
+Explain:
+How does a user initiate a research project?
+
+SCREENSHOT DS-06 — SOURCE COLLECTION
+
+Show:
+
+- Imported website URLs.
+- Uploaded PDF sources.
+- Source title.
+- Domain.
+- Extraction status.
+- Publication date when available.
+
+Explain:
+How does the platform collect information from different types of sources?
+
+SCREENSHOT DS-07 — SOURCE LIBRARY
+
+Show:
+
+- Stored source documents.
+- URL sources.
+- PDF sources.
+- Search and filter functionality.
+- Extraction status.
+
+Explain:
+How are collected sources organized and managed?
+
+SCREENSHOT DS-08 — EXTRACTED INFORMATION
+
+Show:
+
+- Extracted claims.
+- Claim titles.
+- Actual evidence passages.
+- Source references.
+- Page numbers where available.
+
+Explain:
+How does AI transform source documents into structured information?
+
+SCREENSHOT DS-09 — RESEARCH OVERVIEW
+
+Show:
+
+- Executive research summary.
+- Key discoveries.
+- Research status.
+- Important findings.
+- Recommended actions.
+
+Explain:
+How does the platform summarize research without hiding important limitations?
+
+SCREENSHOT DS-10 — RESEARCH COVERAGE MATRIX
+
+Show:
+
+- Research criteria.
+- Covered items.
+- Partially covered items.
+- Not found items.
+- Conflicting items.
+- Items requiring verification.
+
+Explain:
+How does the system identify which aspects of a research objective are adequately covered?
+
+SCREENSHOT DS-11 — INFORMATION GAP DETECTION
+
+Show:
+
+- Actual potential information gaps.
+- Why the gap matters.
+- What information was found.
+- What information was not found.
+- Priority.
+- Suggested verification action.
+
+Explain:
+How does the platform discover missing information that ordinary search and summarization workflows may leave unresolved?
+
+SCREENSHOT DS-12 — CONFLICTING CLAIMS
+
+Show:
+
+- Source A.
+- Source B.
+- Exact evidence passages.
+- Date differences.
+- Possible conflict classification.
+- Suggested verification action.
+
+Prioritize the real deadline discrepancy if the system successfully detects it.
+
+Explain:
+How does the system compare different statements and identify possible contradictions?
+
+SCREENSHOT DS-13 — OUTDATED INFORMATION
+
+Show:
+
+- Historical guideline.
+- Document date.
+- Relevant old provision.
+- Comparison with later official guidelines.
+- Freshness warning.
+- Reason for warning.
+
+Explain:
+How does the platform distinguish historical information from potentially current information?
+
+SCREENSHOT DS-14 — UNANSWERED QUESTIONS
+
+Show:
+
+- Actual unanswered questions.
+- Why each question matters.
+- Relevant sources.
+- Suggested next research action.
+
+Explain:
+How does AI identify important questions that the reviewed material does not adequately answer?
+
+SCREENSHOT DS-15 — VERIFICATION CHECKLIST
+
+Show:
+
+- High-priority tasks.
+- Medium-priority tasks.
+- Pending tasks.
+- Completed tasks.
+- Actual verification progress.
+
+Explain:
+How does Digital Dark Spot convert detected gaps and conflicts into actionable verification tasks?
+
+SCREENSHOT DS-16 — EVIDENCE AND PROVENANCE PANEL
+
+Open an actual research finding.
+
+Show:
+
+- Referenced claim.
+- Verbatim supporting passage.
+- Original source title.
+- Original source URL.
+- Document page.
+- Available dates.
+- Extraction confidence.
+- Open Original Source action.
+
+Explain:
+How can users trace AI-generated findings to original evidence?
+
+SCREENSHOT DS-17 — RESEARCH ASSISTANT
+
+Ask actual follow-up questions such as:
+
+"Why was the application deadline identified as a possible conflict?"
+
+"Which sources support the renewal conditions?"
+
+"What should a student verify before submitting the application?"
+
+Show the real assistant responses.
+
+Explain:
+How does the assistant answer questions using the active research project's evidence?
+
+Do not use predetermined hardcoded answers.
+
+SCREENSHOT DS-18 — FINDING REVIEW SYSTEM
+
+If implemented, show:
+
+- AI Suggested.
+- Needs Review.
+- Confirmed.
+- Dismissed.
+- Needs Investigation.
+
+Demonstrate at least one real user review action.
+
+Explain:
+How can humans review and manage AI-generated findings?
+
+Do not pretend that human confirmation means independently verified factual correctness.
+
+SCREENSHOT DS-19 — ANALYSIS VERSION HISTORY
+
+If implemented, show:
+
+- Analysis versions.
+- New findings.
+- Resolved gaps.
+- Changes since the previous analysis.
+
+Explain:
+How does the platform track research changes over time?
+
+Do not create artificial version histories.
+
+SCREENSHOT DS-20 — PDF REPORT EXPORT
+
+Use the actual Export Report feature.
+
+Generate and open the report.
+
+Capture the PDF export preview.
+
+Explain:
+How can the user generate a professional research report with evidence references?
+
+SCREENSHOT DS-21 — CSV EXPORT
+
+Export available findings or verification tasks.
+
+Capture the actual completed export state and, where possible, a preview of the exported data.
+
+Explain:
+How can structured results be reused outside the platform?
+
+SCREENSHOT DS-22 — MY RESEARCH
+
+Show the newly created saved project.
+
+Explain:
+How can users reopen and manage previous research projects?
+
+SCREENSHOT DS-23 — SETTINGS
+
+Capture the actual settings screen.
+
+Explain the implemented preferences and account-related controls.
+
+Do not show nonexistent settings.
+
+SCREENSHOT DS-24 — MOBILE RESPONSIVENESS
+
+Capture:
+
+- Mobile dashboard.
+- Mobile research workspace.
+- Mobile evidence viewer.
+- Mobile navigation.
+
+Explain how the product adapts to smaller screens.
+
+IMPORTANT:
+
+Capture only screens and features that actually exist.
+
+For features that are missing, inaccessible, or not implemented, record them in a "Not Implemented / Not Tested" section instead of manufacturing screenshots.
+
+==================================================
+PART 7 — SCREENSHOT CAPTURE REQUIREMENTS
+
+All screenshots must:
+
+- Come from the actual running application.
+- Show the real saved research project.
+- Preserve readable text.
+- Show relevant UI labels.
+- Avoid unnecessary browser chrome.
+- Use consistent dimensions.
+- Be saved as PNG files.
+- Have unique sequential filenames.
+
+Example:
+
+DS-01-New-Research.png
+DS-02-Research-Execution.png
+DS-03-Landing-Page.png
+DS-04-Overview-Dashboard.png
+DS-05-Research-Form.png
+DS-06-Source-Collection.png
+DS-07-Source-Library.png
+DS-08-Extracted-Claims.png
+DS-09-Research-Overview.png
+DS-10-Coverage-Matrix.png
+DS-11-Information-Gaps.png
+DS-12-Conflicting-Claims.png
+DS-13-Outdated-Information.png
+DS-14-Unanswered-Questions.png
+DS-15-Verification-Checklist.png
+DS-16-Evidence-Panel.png
+DS-17-Research-Assistant.png
+DS-18-Finding-Review.png
+DS-19-Version-History.png
+DS-20-PDF-Export.png
+DS-21-CSV-Export.png
+DS-22-My-Research.png
+DS-23-Settings.png
+DS-24-Mobile-Responsive.png
+
+If the execution environment provides browser automation, use it to navigate the actual running application, perform the user interactions and capture screenshots.
+
+If direct browser automation is unavailable, implement a reliable Presentation Evidence Capture mode within the existing application.
+
+This mode must use the real application components, real research records and actual page states.
+
+It may use an appropriate browser screenshot or DOM capture library, but must not create screenshot-like mockups.
+
+If a page cannot be captured, clearly record the limitation.
+
+Never claim a screenshot was taken when it was not.
+
+==================================================
+PART 8 — EXPLAIN EVERY FEATURE
+
+For each screenshot, create a structured explanation containing:
+
+1. Feature Name.
+2. Purpose.
+3. Problem It Solves.
+4. How It Works.
+5. What the User Does.
+6. What AI or Backend Does.
+7. Actual Output Observed.
+8. Evidence or Source Reference.
+9. Why This Feature Is Important.
+10. A simple explanation suitable for presenting to hackathon judges.
+
+Keep explanations understandable for a third-year engineering student.
+
+Use simple technical English.
+
+Where useful, include a short Tanglish explanation as supplementary notes.
+
+Do not simply describe the UI appearance.
+
+Explain the underlying functionality.
+
+For example:
+
+Information Gap Detection:
+
+Purpose:
+To identify important research criteria that were not adequately covered by the sources reviewed.
+
+How it works:
+The system compares the research objective with the extracted claims and source evidence.
+
+Actual output:
+Show the genuine potential gaps from the PM-USP research.
+
+Why important:
+It helps users discover missing information before making decisions.
+
+Judge explanation:
+"Normal search tools help us find information. Our platform also identifies what important information is still missing from the sources we reviewed."
+
+==================================================
+PART 9 — TECHNICAL WORKFLOW DOCUMENTATION
+
+Create a visual explanation of the actual implemented architecture.
+
+Document:
+
+User Research Input
+↓
+Source Collection
+↓
+URL and PDF Extraction
+↓
+Content Normalization
+↓
+Claim Extraction
+↓
+Evidence Mapping
+↓
+Cross-Source Comparison
+↓
+Information Gap Detection
+↓
+Outdated Information Analysis
+↓
+Unanswered Questions
+↓
+Verification Checklist
+↓
+Research Report
+
+For each stage, identify:
+
+- Frontend component.
+- Backend function or API.
+- AI model or service, if actually configured.
+- Database interaction.
+- Data produced.
+
+Only document the architecture supported by the real source code.
+
+Do not invent technical services or backend integrations.
+
+Clearly distinguish implemented functionality from future enhancements.
+
+==================================================
+PART 10 — TESTING AND RESULTS
+
+Create a detailed test execution table.
+
+Include:
+
+- Test ID.
+- Feature.
+- Test action.
+- Expected outcome.
+- Actual observed outcome.
+- Status.
+- Screenshot reference.
+
+Use:
+
+PASS.
+FAIL.
+PARTIALLY WORKING.
+BLOCKED.
+NOT IMPLEMENTED.
+NOT TESTED.
+
+Test:
+
+1. Create new research.
+2. Import main official URL.
+3. Import supporting URLs.
+4. Extract PDF documents.
+5. Extract relevant claims.
+6. Map evidence.
+7. Detect potential information gaps.
+8. Detect the potential deadline discrepancy.
+9. Recognize historical source information.
+10. Generate unanswered questions.
+11. Generate verification checklist.
+12. Open original source links.
+13. Ask Research Assistant questions.
+14. Save and reopen research.
+15. Export PDF.
+16. Export CSV.
+17. Test mobile responsiveness.
+
+The actual results must determine test status.
+
+Do not mark something PASS merely because a button is visible.
+
+==================================================
+PART 11 — GENERATE THE FINAL PDF REPORT
+
+Generate a professional document named:
+
+DIGITAL_DARK_SPOT_LIVE_RESEARCH_TEST_REPORT.pdf
+
+Suggested length:
+
+Approximately 20–30 pages, depending on the number of actual screenshots.
+
+Report design:
+
+- White or very light background for readability.
+- Dark navy headings.
+- Blue accent elements.
+- Professional typography.
+- Consistent page margins.
+- Page numbers.
+- Figure numbers.
+- Clear screenshot captions.
+- Tables with readable text.
+
+REPORT STRUCTURE:
+
+PAGE 1 — COVER
+
+DIGITAL DARK SPOT
+
+AI-Assisted Information Gap Detection Platform
+
+Live Research Test & Feature Documentation
+
+SHINCHAN ONLINE HACKATHON 2026
+
+PAGE 2 — EXECUTIVE SUMMARY
+
+Explain:
+
+- What was tested.
+- Which real sources were used.
+- What the platform analyzed.
+- What findings were produced.
+- Overall testing status.
+
+PAGE 3 — PROJECT OVERVIEW
+
+Explain the problem statement and solution.
+
+PAGE 4 — RESEARCH CONFIGURATION
+
+Show actual research title, question, objective and source URLs.
+
+PAGE 5 — SOURCE COLLECTION
+
+Include the source collection screenshot and source extraction details.
+
+PAGE 6 — INFORMATION EXTRACTION
+
+Show actual extracted claims and evidence.
+
+PAGE 7 — RESEARCH OVERVIEW
+
+Explain the executive summary and findings.
+
+PAGE 8 — RESEARCH COVERAGE MATRIX
+
+Show actual coverage and explain how it is calculated.
+
+PAGE 9 — INFORMATION GAP DETECTION
+
+Show actual potential gaps.
+
+PAGE 10 — CONFLICT DETECTION
+
+Show the actual source comparison, especially the deadline discrepancy if detected.
+
+PAGE 11 — OUTDATED INFORMATION
+
+Show the historical document analysis.
+
+PAGE 12 — UNANSWERED QUESTIONS
+
+Show actual generated questions.
+
+PAGE 13 — VERIFICATION CHECKLIST
+
+Show actual priority tasks and completion tracking.
+
+PAGE 14 — EVIDENCE AND PROVENANCE
+
+Show source-backed evidence and explain traceability.
+
+PAGE 15 — RESEARCH ASSISTANT
+
+Show actual question-answer interactions.
+
+PAGE 16 — FINDING REVIEW
+
+Document the review workflow if implemented.
+
+PAGE 17 — VERSION HISTORY
+
+Document the implemented version tracking if available.
+
+PAGE 18 — REPORT EXPORT
+
+Show PDF and CSV export functionality.
+
+PAGE 19 — SOURCE LIBRARY AND MY RESEARCH
+
+Show source management and saved research projects.
+
+PAGE 20 — MOBILE RESPONSIVENESS
+
+Show important mobile screenshots.
+
+PAGE 21 — TECHNICAL ARCHITECTURE
+
+Explain the actual application workflow.
+
+PAGE 22 — TESTING RESULTS
+
+Provide the PASS/FAIL/PARTIAL/BLOCKED/NOT TESTED table.
+
+PAGE 23 — KEY FINDINGS
+
+Summarize actual findings from the research.
+
+PAGE 24 — LIMITATIONS AND IMPROVEMENTS
+
+List any real issues found during execution.
+
+PAGE 25 — CONCLUSION
+
+Explain how the complete research workflow demonstrates the Digital Dark Spot problem statement.
+
+Adapt the page count based on actual screenshots and content.
+
+Do not add empty pages or fabricated feature explanations.
+
+==================================================
+PART 12 — GENERATE PPT PREPARATION NOTES
+
+In addition to the PDF, create:
+
+DIGITAL_DARK_SPOT_PPT_PREPARATION_NOTES.md
+
+This document must explain which screenshots should be included in the final hackathon presentation.
+
+Provide a recommended slide structure:
+
+SLIDE 1 — Project Introduction.
+SLIDE 2 — Problem Statement.
+SLIDE 3 — Proposed Solution.
+SLIDE 4 — Overall Workflow.
+SLIDE 5 — New Research and Source Collection.
+SLIDE 6 — AI Information Extraction.
+SLIDE 7 — Information Gap Detection.
+SLIDE 8 — Conflict Detection.
+SLIDE 9 — Outdated Information Detection.
+SLIDE 10 — Evidence and Provenance.
+SLIDE 11 — Verification Checklist and Coverage Matrix.
+SLIDE 12 — Technology Architecture.
+SLIDE 13 — Real Research Demonstration.
+SLIDE 14 — Innovation and Differentiation.
+SLIDE 15 — Impact and Conclusion.
+
+For each slide provide:
+
+- Recommended screenshot IDs.
+- Slide title.
+- Main explanation.
+- Three important points.
+- Suggested 20–30 second presentation script.
+- What judges should observe.
+
+Keep the presentation notes simple and clear.
+
+==================================================
+PART 13 — FINAL DELIVERABLES
+
+Generate the following deliverables.
+
+1. DIGITAL_DARK_SPOT_LIVE_RESEARCH_TEST_REPORT.pdf
+
+A professional screenshot-based report explaining the actual research workflow and each feature.
+
+2. DIGITAL_DARK_SPOT_SCREENSHOT_EVIDENCE/
+
+A folder containing individual PNG screenshots.
+
+3. DIGITAL_DARK_SPOT_PPT_PREPARATION_NOTES.md
+
+A complete presentation preparation document.
+
+4. DIGITAL_DARK_SPOT_TEST_RESULTS.csv
+
+A test-results table containing actual testing outcomes.
+
+5. DIGITAL_DARK_SPOT_RESEARCH_DATA/
+
+An export containing the actual research source metadata, findings, and checklist data, where supported by the application.
+
+Create a summary page showing:
+
+- Total screenshots captured.
+- Total features documented.
+- Total tests passed.
+- Total tests failed.
+- Total blocked tests.
+- Features not implemented.
+- Final research status.
+
+==================================================
+PART 14 — IMPORTANT EXECUTION RULES
+
+1. Actually start the new research project.
+2. Use the exact official URLs specified above.
+3. Use the application's real source extraction process.
+4. Use the application's real AI processing pipeline.
+5. Do not write fake AI findings.
+6. Do not fabricate quotations.
+7. Do not fabricate source references.
+8. Do not fabricate publication dates.
+9. Do not fabricate screenshots.
+10. Do not count illustrative demo data as real analysis.
+11. Do not overwrite existing user projects.
+12. Preserve all existing working features.
+13. Record all failures honestly.
+14. Generate the actual screenshots after interacting with each page.
+15. Generate the PDF report with embedded screenshots.
+16. Make the explanations useful for understanding the project and presenting it to judges.
+
+If the environment cannot perform an operation, explicitly report what is required and do not represent the operation as completed.
+
+FINAL OBJECTIVE:
+
+Create a complete, evidence-based technical demonstration of DIGITAL DARK SPOT using a REAL Government of India scholarship source.
+
+The final report must help the project team understand:
+
+- What each feature does.
+- How every feature works.
+- What information the AI extracted.
+- What gaps the AI identified.
+- How conflicting claims were detected.
+- How outdated documents were handled.
+- How evidence is connected to original sources.
+- How users verify the findings.
+- How the full technical workflow operates.
+
+The report must be useful as the primary reference document for creating the final SHINCHAN ONLINE HACKATHON 2026 PowerPoint presentation.
+
+START THE ACTUAL RESEARCH EXECUTION NOW.
+
+Do not stop after generating a plan. Inspect, execute, capture, document, and generate the deliverables.
